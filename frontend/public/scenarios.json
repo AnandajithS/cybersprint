@@ -1,0 +1,1688 @@
+[
+  {
+    "id": "easy-01",
+    "type": "email",
+    "difficulty": 1,
+    "title": "School Schedule Update",
+    "sender": "admin@northgate-school.edu",
+    "content": "Dear students, tomorrow's computer lab session has been moved to 10:00 AM. Please arrive on time. \u2014 Vice Principal's Office",
+    "metadata": {
+      "from": "Vice Principal's Office",
+      "subject": "Schedule Change - Computer Lab"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "open",
+    "acceptableActions": [
+      "ignore"
+    ],
+    "points": 10,
+    "explanation": "This is a legitimate message from your school. The sender domain matches your school's official email and the content is a normal schedule announcement.",
+    "category": "legitimate"
+  },
+  {
+    "id": "easy-02",
+    "type": "email",
+    "difficulty": 1,
+    "title": "Free iPhone Scam",
+    "sender": "prizes@totallyreal-rewards.com",
+    "content": "CONGRATULATIONS!!! YOU HAVE WON A FREE IPHONE 16 PRO MAX!!! CLICK HERE NOW BEFORE THIS AMAZING OFFER EXPIRES IN 5 MINUTES!!! Claim your prize immediately!",
+    "metadata": {
+      "from": "Prize Department",
+      "subject": "YOU WON A FREE IPHONE!!!"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "report",
+    "acceptableActions": [
+      "block",
+      "ignore"
+    ],
+    "points": 10,
+    "explanation": "Classic phishing attempt. Uses ALL CAPS, excessive exclamation marks, urgency (5 minutes), and an unbelievable prize. The sender domain is suspicious.",
+    "category": "phishing"
+  },
+  {
+    "id": "easy-03",
+    "type": "browser",
+    "difficulty": 1,
+    "title": "Game Currency Pop-up",
+    "sender": "pop-up",
+    "content": "\ud83c\udf89 CONGRATULATIONS! \ud83c\udf89 You have been randomly selected to receive 5,000 FREE game credits! Click 'Claim Now' to add them to your account immediately!",
+    "metadata": {
+      "source": "GameRewardz.net"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "block",
+    "acceptableActions": [
+      "ignore",
+      "report"
+    ],
+    "points": 10,
+    "explanation": "This is a pop-up scam. Legitimate gaming platforms don't randomly award credits through browser pop-ups. Block this site to prevent future pop-ups.",
+    "category": "scam"
+  },
+  {
+    "id": "easy-04",
+    "type": "chat",
+    "difficulty": 1,
+    "title": "Friend Messaging Normally",
+    "sender": "Alex (Classmate)",
+    "content": "Hey! Are you coming to the study group tonight? We're meeting at the library at 4pm.",
+    "metadata": {
+      "platform": "SchoolChat"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "open",
+    "acceptableActions": [
+      "ignore"
+    ],
+    "points": 10,
+    "explanation": "This is a normal message from a classmate about a study group. The content is reasonable and doesn't ask for any sensitive information.",
+    "category": "legitimate"
+  },
+  {
+    "id": "easy-05",
+    "type": "notification",
+    "difficulty": 1,
+    "title": "Unknown USB Device",
+    "sender": "System",
+    "content": "USB device detected: FREE_GAMES_2026. This device is ready to use.",
+    "metadata": {
+      "deviceName": "FREE_GAMES_2026",
+      "deviceType": "USB Mass Storage"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "block",
+    "acceptableActions": [
+      "ignore"
+    ],
+    "points": 10,
+    "explanation": "Unknown USB devices can contain malware. Never plug in USB drives you find or receive from untrusted sources. The name 'FREE_GAMES_2026' is designed to tempt you.",
+    "category": "malware"
+  },
+  {
+    "id": "easy-06",
+    "type": "email",
+    "difficulty": 1,
+    "title": "Password Reset Request",
+    "sender": "security@banking-alerts.net",
+    "content": "We detected unusual activity on your bank account. Your password has been reset. If you did not request this, click here immediately to secure your account.",
+    "metadata": {
+      "from": "Bank Security Team",
+      "subject": "URGENT: Unusual Activity Detected"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "report",
+    "acceptableActions": [
+      "block",
+      "ignore"
+    ],
+    "points": 10,
+    "explanation": "This is a phishing email. Banks never send password reset links via email. The domain 'banking-alerts.net' is not your bank's real domain.",
+    "category": "phishing"
+  },
+  {
+    "id": "medium-01",
+    "type": "chat",
+    "difficulty": 2,
+    "title": "Friend Requesting OTP",
+    "sender": "Jamie (Friend)",
+    "content": "Hey, I accidentally logged into your account on my phone. Can you send me the OTP code you just received? I need to log out. Thanks!",
+    "metadata": {
+      "platform": "ChatApp"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "verify",
+    "acceptableActions": [
+      "report",
+      "block",
+      "ignore"
+    ],
+    "points": 15,
+    "explanation": "Even if this seems like a friend, OTP codes should NEVER be shared. First verify this is actually your friend by contacting them through another channel. Their account may have been compromised.",
+    "category": "social-engineering"
+  },
+  {
+    "id": "medium-02",
+    "type": "email",
+    "difficulty": 2,
+    "title": "Fake Exam Papers",
+    "sender": "study-helper@leaked-papers.org",
+    "content": "URGENT: Leaked final exam papers have been uploaded to our secure server. Download your copies before the link expires in 2 hours. Don't tell your teachers!",
+    "metadata": {
+      "from": "Anonymous Study Group",
+      "subject": "\u3044\u305f\u3044 Leaked Exam Papers - Download Now"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "report",
+    "acceptableActions": [
+      "ignore",
+      "block"
+    ],
+    "points": 15,
+    "explanation": "This uses urgency and secrecy ('Don't tell your teachers') to pressure you. The sender domain is suspicious, and leaked exam papers would be a school security issue.",
+    "category": "phishing"
+  },
+  {
+    "id": "medium-03",
+    "type": "notification",
+    "difficulty": 2,
+    "title": "Software Update Available",
+    "sender": "System Update",
+    "content": "A critical security update is available for your operating system. This update patches vulnerabilities that could be exploited. Restart required after installation.",
+    "metadata": {
+      "source": "System Update Service",
+      "priority": "Important"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "open",
+    "acceptableActions": [
+      "ignore",
+      "verify"
+    ],
+    "points": 15,
+    "explanation": "Legitimate system updates are important for security. This appears to be a genuine update notification. Always keep your system updated to protect against threats.",
+    "category": "legitimate"
+  },
+  {
+    "id": "medium-04",
+    "type": "browser",
+    "difficulty": 2,
+    "title": "Fake Login Page",
+    "sender": "browser",
+    "content": "Your session has expired. Please log in again to continue. The page looks identical to your social media login but the URL shows: social media-login.security-check.xyz",
+    "metadata": {
+      "url": "social media-login.security-check.xyz",
+      "mimics": "SocialMedia Login"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "report",
+    "acceptableActions": [
+      "block",
+      "ignore"
+    ],
+    "points": 15,
+    "explanation": "The URL is not the real social media domain. 'security-check.xyz' is a phishing site designed to steal your credentials. Always check the URL carefully before entering login information.",
+    "category": "phishing"
+  },
+  {
+    "id": "medium-05",
+    "type": "qr",
+    "difficulty": 2,
+    "title": "Free Pizza QR Code",
+    "sender": "Poster",
+    "content": "A poster in the school hallway says: 'SCAN THIS QR CODE TO CLAIM YOUR FREE PIZZA! \ud83c\udf55 Limited time offer for Northgate students!' The QR code links to: free-pizza-northgate.ru/redeem",
+    "metadata": {
+      "location": "School hallway",
+      "url": "free-pizza-northgate.ru/redeem"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "report",
+    "acceptableActions": [
+      "block",
+      "ignore",
+      "verify"
+    ],
+    "points": 15,
+    "explanation": "The URL ends in '.ru' which is suspicious for a school-related offer. Free food offers are common social engineering tactics. QR codes can lead to phishing sites or malware.",
+    "category": "social-engineering"
+  },
+  {
+    "id": "medium-06",
+    "type": "email",
+    "difficulty": 2,
+    "title": "Teacher's Request for Help",
+    "sender": "mrs.anderson@northgate-school.edu",
+    "content": "Hi, I'm having trouble accessing my email from home. Could you help me by sharing your login credentials temporarily? I need to check something important for tomorrow's class. \u2014 Mrs. Anderson",
+    "metadata": {
+      "from": "Mrs. Anderson (Science Teacher)",
+      "subject": "Quick favor needed"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "report",
+    "acceptableActions": [
+      "block",
+      "ignore",
+      "verify"
+    ],
+    "points": 15,
+    "explanation": "No legitimate teacher would ask for student login credentials. This is social engineering using authority and trust. The sender may be impersonating Mrs. Anderson.",
+    "category": "social-engineering"
+  },
+  {
+    "id": "medium-07",
+    "type": "notification",
+    "difficulty": 2,
+    "title": "Account Verification Required",
+    "sender": "SocialApp Security",
+    "content": "Your SocialApp account needs immediate verification or it will be suspended within 24 hours. Click the link below to verify your identity with a quick video call.",
+    "metadata": {
+      "source": "SocialApp Security Team",
+      "link": "verify.socialapp.security-check.net"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "verify",
+    "acceptableActions": [
+      "report",
+      "ignore",
+      "block"
+    ],
+    "points": 15,
+    "explanation": "While account verification can be legitimate, the urgency and suspicious link are red flags. Always verify through the official app or website, not through email links.",
+    "category": "phishing"
+  },
+  {
+    "id": "medium-08",
+    "type": "chat",
+    "difficulty": 2,
+    "title": "Prank or Real?",
+    "sender": "Unknown Number",
+    "content": "Hey, this is the school IT department. We need to verify your laptop for a security check. Can you install this quick tool? It'll only take a minute.",
+    "metadata": {
+      "platform": "Messaging App",
+      "claimed": "School IT Department"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "verify",
+    "acceptableActions": [
+      "report",
+      "ignore",
+      "block"
+    ],
+    "points": 15,
+    "explanation": "School IT would contact you through official channels, not random messages. Always verify unexpected requests through a known contact method before installing anything.",
+    "category": "social-engineering"
+  },
+  {
+    "id": "hard-01",
+    "type": "email",
+    "difficulty": 3,
+    "title": "Netflix Subscription Renewal",
+    "sender": "billing@netflix.com-support.net",
+    "content": "Your Netflix subscription has been renewed for $24.99. If this wasn't you, click here to cancel and request a refund within 24 hours. Your next billing date is tomorrow.",
+    "metadata": {
+      "from": "Netflix Billing",
+      "subject": "Your subscription renewal confirmation"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "verify",
+    "acceptableActions": [
+      "report",
+      "ignore",
+      "block"
+    ],
+    "points": 20,
+    "explanation": "This looks very official but the sender domain has an extra '-support' in it. Real Netflix uses netflix.com. Always check the sender domain carefully. Verify through your actual Netflix account.",
+    "category": "phishing"
+  },
+  {
+    "id": "hard-02",
+    "type": "email",
+    "difficulty": 3,
+    "title": "College Application Status",
+    "sender": "admissions@stateu.edu",
+    "content": "Congratulations! Your application to State University has been pre-approved! To confirm your spot, please click the link below and submit your personal details including your Social Security Number for enrollment processing.",
+    "metadata": {
+      "from": "State University Admissions",
+      "subject": "Pre-Approved! Confirm Your Enrollment"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "verify",
+    "acceptableActions": [
+      "report",
+      "ignore",
+      "block"
+    ],
+    "points": 20,
+    "explanation": "Legitimate universities don't ask for SSNs through email links. Even if the domain looks real, always verify by contacting the university directly through their official website.",
+    "category": "phishing"
+  },
+  {
+    "id": "hard-03",
+    "type": "chat",
+    "difficulty": 3,
+    "title": "Friend's Compromised Account",
+    "sender": "Riley (Best Friend)",
+    "content": "OMG I just found this amazing website that shows who views your profile! You HAVE to check it out: profileviewers.social/analytics. Just log in with your account to see your stats!",
+    "metadata": {
+      "platform": "SocialChat",
+      "urgency": "High"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "verify",
+    "acceptableActions": [
+      "report",
+      "ignore",
+      "block"
+    ],
+    "points": 20,
+    "explanation": "This is a common scam spreading through compromised friend accounts. No legitimate site can show profile viewers. Contact your friend through another method to confirm they actually sent this.",
+    "category": "social-engineering"
+  },
+  {
+    "id": "hard-04",
+    "type": "notification",
+    "difficulty": 3,
+    "title": "Fake Antivirus Alert",
+    "sender": "System Security",
+    "content": "\u26a0\ufe0f WARNING: 3 viruses detected on your device! Your personal files are at risk of being deleted. Download SecureGuard Pro now to remove all threats immediately. Your subscription expires in 30 minutes.",
+    "metadata": {
+      "source": "Pop-up Alert",
+      "style": "System Warning"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "block",
+    "acceptableActions": [
+      "ignore",
+      "report"
+    ],
+    "points": 20,
+    "explanation": "Fake antivirus alerts are designed to scare you into downloading malware. Real antivirus software shows alerts within the application, not through browser pop-ups.",
+    "category": "malware"
+  },
+  {
+    "id": "hard-05",
+    "type": "qr",
+    "difficulty": 3,
+    "title": "Event Registration QR Code",
+    "sender": "Event Poster",
+    "content": "A professional-looking poster for the 'Annual Tech Conference' has a QR code for registration. It asks for your full name, email, phone number, and school ID. The poster is at the school entrance.",
+    "metadata": {
+      "location": "School entrance",
+      "event": "Annual Tech Conference",
+      "url": "techconf2026-registration.online"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "verify",
+    "acceptableActions": [
+      "ignore",
+      "report",
+      "block"
+    ],
+    "points": 20,
+    "explanation": "Even professional-looking events should be verified. Check with school administration if this event is real before scanning QR codes or entering personal information.",
+    "category": "social-engineering"
+  },
+  {
+    "id": "hard-06",
+    "type": "email",
+    "difficulty": 3,
+    "title": "Library Fine Notice",
+    "sender": "library-fines@northgate-school.edu",
+    "content": "You have an overdue library book and a fine of $15.00 has been applied to your student account. To avoid additional late fees, please click the link below to pay through our secure payment portal.",
+    "metadata": {
+      "from": "School Library",
+      "subject": "Overdue Book - Payment Required"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "verify",
+    "acceptableActions": [
+      "ignore",
+      "report",
+      "block"
+    ],
+    "points": 20,
+    "explanation": "This looks legitimate (correct school domain) but could still be phishing. Always verify by checking your actual library account or contacting the library directly before clicking payment links.",
+    "category": "phishing"
+  },
+  {
+    "id": "hard-07",
+    "type": "notification",
+    "difficulty": 3,
+    "title": "Boss/Parent Impersonation",
+    "sender": "Mom",
+    "content": "Hey, I'm at the store and my phone is about to die. Can you quickly buy a $50 gift card for your aunt's birthday? I'll pay you back. Get an Amazon gift card and send me the code.",
+    "metadata": {
+      "platform": "Text Message",
+      "claimed": "Parent"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "verify",
+    "acceptableActions": [
+      "report",
+      "ignore",
+      "block"
+    ],
+    "points": 20,
+    "explanation": "This is a common scam where attackers impersonate family members. Always verify by calling your parent's real phone number before sending gift card codes.",
+    "category": "social-engineering"
+  },
+  {
+    "id": "hard-08",
+    "type": "email",
+    "difficulty": 3,
+    "title": "Scholarship Award",
+    "sender": "scholarships@futureleaders-foundation.org",
+    "content": "Congratulations! You've been selected for the Future Leaders $5,000 Scholarship! To claim your award, we need your bank account details for direct deposit and a copy of your ID for verification.",
+    "metadata": {
+      "from": "Future Leaders Foundation",
+      "subject": "You Won the $5,000 Scholarship!"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "verify",
+    "acceptableActions": [
+      "report",
+      "ignore",
+      "block"
+    ],
+    "points": 20,
+    "explanation": "Legitimate scholarships don't ask for bank details via email. Research the organization first. If it's real, they'll have a formal process that doesn't start with an unsolicited email.",
+    "category": "phishing"
+  },
+  {
+    "id": "hard-09",
+    "type": "chat",
+    "difficulty": 3,
+    "title": "Study Partner's File",
+    "sender": "Jordan (Classmate)",
+    "content": "Here's the study guide for tomorrow's math test! I put it in this shared folder. It's a .exe file but don't worry, it's just a self-extracting archive with the PDFs inside.",
+    "metadata": {
+      "platform": "SchoolDrive",
+      "fileType": ".exe"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "report",
+    "acceptableActions": [
+      "block",
+      "ignore",
+      "verify"
+    ],
+    "points": 20,
+    "explanation": "Never open .exe files, even from classmates. Study guides should be PDFs, not executables. Your classmate's account may be compromised. The file could contain malware.",
+    "category": "malware"
+  },
+  {
+    "id": "hard-10",
+    "type": "browser",
+    "difficulty": 3,
+    "title": "Cloud Storage Warning",
+    "sender": "browser",
+    "content": "Your cloud storage is 99% full! You have only 50MB remaining. To prevent your files from being permanently deleted, upgrade to CloudPro Premium now for just $4.99/month.",
+    "metadata": {
+      "source": "cloud-storage-alert.com",
+      "urgency": "Files will be deleted in 24 hours"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "verify",
+    "acceptableActions": [
+      "ignore",
+      "report"
+    ],
+    "points": 20,
+    "explanation": "This creates false urgency. Check your actual cloud storage status through the official app or website. Don't click links in alarming pop-ups.",
+    "category": "phishing"
+  },
+  {
+    "id": "rapid-01",
+    "type": "email",
+    "difficulty": 2,
+    "title": "Yearbook Photo Submission",
+    "sender": "yearbook@northgate-school.edu",
+    "content": "Reminder: Please submit your senior photos by this Friday. Use the link below to upload to our official yearbook portal.",
+    "metadata": {
+      "from": "Yearbook Committee",
+      "subject": "Senior Photos Due Friday"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "open",
+    "acceptableActions": [
+      "ignore",
+      "verify"
+    ],
+    "points": 10,
+    "explanation": "Legitimate school communication from the correct domain. This is a normal yearbook reminder.",
+    "category": "legitimate"
+  },
+  {
+    "id": "rapid-02",
+    "type": "chat",
+    "difficulty": 2,
+    "title": "Crypto Investment Scam",
+    "sender": "Unknown",
+    "content": "Hey! I made $5,000 last week with this crypto trading bot. Want in? Just send me $100 to start and I'll show you how to multiply it! \ud83d\udd25\ud83d\ude80",
+    "metadata": {
+      "platform": "Messaging App"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "block",
+    "acceptableActions": [
+      "ignore",
+      "report"
+    ],
+    "points": 10,
+    "explanation": "Classic investment scam. No one can guarantee returns. Never send money to strangers promising quick riches.",
+    "category": "scam"
+  },
+  {
+    "id": "rapid-03",
+    "type": "notification",
+    "difficulty": 2,
+    "title": "Battery Low Warning",
+    "sender": "System",
+    "content": "Battery level is at 15%. Connect your charger to continue.",
+    "metadata": {
+      "source": "System Battery Monitor"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "ignore",
+    "acceptableActions": [
+      "open"
+    ],
+    "points": 10,
+    "explanation": "This is a normal system notification. Not everything is a threat! Learning to distinguish real system messages from fake ones is important.",
+    "category": "legitimate"
+  },
+  {
+    "id": "rapid-04",
+    "type": "email",
+    "difficulty": 2,
+    "title": "Sports Team Tryouts",
+    "sender": "coach.wilson@northgate-school.edu",
+    "content": "Basketball tryouts are next Tuesday at 3:30 PM in the main gym. Bring your gym clothes and water bottle. See you there!",
+    "metadata": {
+      "from": "Coach Wilson",
+      "subject": "Basketball Tryouts - Next Tuesday"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "open",
+    "acceptableActions": [
+      "ignore",
+      "verify"
+    ],
+    "points": 10,
+    "explanation": "Legitimate message from a school coach. Normal school activity announcement.",
+    "category": "legitimate"
+  },
+  {
+    "id": "rapid-05",
+    "type": "browser",
+    "difficulty": 2,
+    "title": "Reward Survey",
+    "sender": "Pop-up",
+    "content": "\u3044\u305f\u3044 CONGRATULATIONS! Complete this 2-minute survey and win a $100 gift card! 97% of participants have won! Don't miss out!",
+    "metadata": {
+      "source": "reward-survey.win"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "block",
+    "acceptableActions": [
+      "ignore",
+      "report"
+    ],
+    "points": 10,
+    "explanation": "Survey scams collect personal information. The '.win' domain and excessive excitement are red flags.",
+    "category": "scam"
+  },
+  {
+    "id": "rapid-06",
+    "type": "notification",
+    "difficulty": 2,
+    "title": "Disk Space Low",
+    "sender": "System",
+    "content": "Your disk space is running low. Consider freeing up space or moving files to cloud storage. 2.3 GB remaining.",
+    "metadata": {
+      "source": "Storage Manager"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "ignore",
+    "acceptableActions": [
+      "open"
+    ],
+    "points": 10,
+    "explanation": "Legitimate system notification about storage. This is helpful system information, not a threat.",
+    "category": "legitimate"
+  },
+  {
+    "id": "rapid-07",
+    "type": "chat",
+    "difficulty": 2,
+    "title": "Homework Help Offer",
+    "sender": "Sam (Classmate)",
+    "content": "Hey, want to work on the history project together after school? I already started on the slides.",
+    "metadata": {
+      "platform": "SchoolChat"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "open",
+    "acceptableActions": [
+      "ignore",
+      "verify"
+    ],
+    "points": 10,
+    "explanation": "Normal classmate message about schoolwork. Completely appropriate to respond to.",
+    "category": "legitimate"
+  },
+  {
+    "id": "rapid-08",
+    "type": "email",
+    "difficulty": 2,
+    "title": "Job Opportunity Scam",
+    "sender": "hiring@work-from-home-jobs2026.com",
+    "content": "EASY MONEY! Work from home and earn $500/day! No experience needed! Just send us your ID and bank details to get started. Limited positions available!",
+    "metadata": {
+      "from": "QuickCash Employment",
+      "subject": "EARN $500/DAY - NO EXPERIENCE NEEDED"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "report",
+    "acceptableActions": [
+      "block",
+      "ignore"
+    ],
+    "points": 10,
+    "explanation": "Job scams promising easy money are designed to steal your personal information. Real jobs don't ask for bank details before hiring.",
+    "category": "scam"
+  },
+  {
+    "id": "rapid-09",
+    "type": "notification",
+    "difficulty": 2,
+    "title": "Wi-Fi Network Available",
+    "sender": "Network",
+    "content": "New Wi-Fi network available: 'School_Free_WiFi_No_Password'. Connect now for free internet access!",
+    "metadata": {
+      "networkName": "School_Free_WiFi_No_Password",
+      "security": "Open"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "verify",
+    "acceptableActions": [
+      "ignore",
+      "report"
+    ],
+    "points": 10,
+    "explanation": "Unsecured Wi-Fi networks can be dangerous. Verify with school IT that this is the official network before connecting. Free Wi-Fi without passwords can be used to intercept your data.",
+    "category": "security"
+  },
+  {
+    "id": "rapid-10",
+    "type": "email",
+    "difficulty": 2,
+    "title": "Club Meeting Reminder",
+    "sender": "club-president@northgate-school.edu",
+    "content": "Robotics club meeting tomorrow in room 204 at lunch. We'll be finalizing our competition robot. Bring your laptops!",
+    "metadata": {
+      "from": "Robotics Club President",
+      "subject": "Robotics Club - Meeting Tomorrow"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "open",
+    "acceptableActions": [
+      "ignore",
+      "verify"
+    ],
+    "points": 10,
+    "explanation": "Legitimate club communication from the school domain. Normal student activity.",
+    "category": "legitimate"
+  },
+  {
+    "id": "final-01",
+    "type": "email",
+    "difficulty": 3,
+    "title": "Password Breach Notification",
+    "sender": "security@haveibeenpwned-alert.com",
+    "content": "Your email address appeared in a data breach. Your password has been compromised. Change your password immediately using the secure link below. This is an automated security alert.",
+    "metadata": {
+      "from": "Data Breach Alert Service",
+      "subject": "URGENT: Your Password Has Been Compromised"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "verify",
+    "acceptableActions": [
+      "report",
+      "ignore",
+      "block"
+    ],
+    "points": 25,
+    "explanation": "Data breach alerts are common phishing tactics. The domain is not the real 'haveibeenpwned.com'. Always verify through the actual service, and change passwords directly through official websites.",
+    "category": "phishing"
+  },
+  {
+    "id": "final-02",
+    "type": "chat",
+    "difficulty": 3,
+    "title": "Charity Scam",
+    "sender": "Student Council",
+    "content": "Hi! We're raising money for the local animal shelter. Can you donate $5 through this link? Every dollar helps! Here's our official-looking fundraiser page: charity-donate.schoolfund.org",
+    "metadata": {
+      "platform": "School Message",
+      "claimed": "Student Council"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "verify",
+    "acceptableActions": [
+      "report",
+      "ignore",
+      "block"
+    ],
+    "points": 25,
+    "explanation": "Even school-related charity requests should be verified. The URL is not from the school domain. Check with the Student Council directly or through official school channels.",
+    "category": "social-engineering"
+  },
+  {
+    "id": "final-03",
+    "type": "notification",
+    "difficulty": 3,
+    "title": "Device Management Profile",
+    "sender": "Settings",
+    "content": "A configuration profile has been downloaded to your device. To enable full device functionality for school, install this management profile. It will allow remote support if needed.",
+    "metadata": {
+      "source": "iOS Settings",
+      "profileName": "School_Mgmt_Profile"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "verify",
+    "acceptableActions": [
+      "ignore",
+      "block",
+      "report"
+    ],
+    "points": 25,
+    "explanation": "Device management profiles can give extensive control over your device. Only install profiles from verified school IT sources. Ask your school's IT department first.",
+    "category": "security"
+  },
+  {
+    "id": "final-04",
+    "type": "email",
+    "difficulty": 3,
+    "title": "Invoice Scam",
+    "sender": "billing@school-supplies-wholesale.com",
+    "content": "Invoice #8847: You have an outstanding balance of $342.50 for school supplies ordered on 15/08/2026. Payment due immediately. Click to view invoice and pay.",
+    "metadata": {
+      "from": "School Supplies Wholesale",
+      "subject": "Invoice #8847 - Payment Overdue"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "verify",
+    "acceptableActions": [
+      "report",
+      "ignore",
+      "block"
+    ],
+    "points": 25,
+    "explanation": "Invoice scams rely on you thinking you owe money. If you didn't order school supplies, this is a scam. Verify by contacting the supposed sender through official channels.",
+    "category": "phishing"
+  },
+  {
+    "id": "final-05",
+    "type": "browser",
+    "difficulty": 3,
+    "title": "Fake Browser Update",
+    "sender": "Chrome",
+    "content": "Your browser is outdated and no longer secure. Download Chrome Update v127.1 to continue browsing safely. This update includes critical security patches.",
+    "metadata": {
+      "source": "chrome-update.security-patch.net",
+      "looksLike": "Chrome Update"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "report",
+    "acceptableActions": [
+      "block",
+      "ignore"
+    ],
+    "points": 25,
+    "explanation": "Fake browser updates are a common malware delivery method. Real Chrome updates happen automatically through the browser settings. Never download updates from pop-ups.",
+    "category": "malware"
+  },
+  {
+    "id": "final-06",
+    "type": "notification",
+    "difficulty": 3,
+    "title": "Friend Request from Someone You Know",
+    "sender": "SocialApp",
+    "content": "Morgan Davis wants to connect with you. You have 14 mutual friends. Morgan works at TechCorp and studied at State University.",
+    "metadata": {
+      "source": "SocialApp Notification",
+      "mutualFriends": "14"
+    },
+    "actions": [
+      {
+        "id": "open",
+        "label": "Open"
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore"
+      },
+      {
+        "id": "verify",
+        "label": "Verify"
+      },
+      {
+        "id": "report",
+        "label": "Report"
+      },
+      {
+        "id": "block",
+        "label": "Block"
+      }
+    ],
+    "correctAction": "verify",
+    "acceptableActions": [
+      "ignore",
+      "block",
+      "report"
+    ],
+    "points": 25,
+    "explanation": "Fake profiles often use mutual friends and realistic details. If you don't actually know this person, don't accept. Verify by checking if you truly know them.",
+    "category": "social-engineering"
+  }
+]
