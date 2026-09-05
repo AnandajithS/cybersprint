@@ -68,7 +68,7 @@ export default function Game({ state, onAction, onEndGame }: GameProps) {
 
               <Timer 
                 timeRemaining={state.timeRemaining} 
-                totalTime={600}
+                totalTime={300}
               />
 
               <div className="flex items-center gap-2">

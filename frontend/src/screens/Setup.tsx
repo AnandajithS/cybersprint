@@ -77,7 +77,7 @@ export default function Setup({ onStart }: SetupProps) {
 
 
                 <div className="text-2xl mb-1">⏱️</div>
-                <div className="text-gray-400">10 Minutes</div>
+                <div className="text-gray-400">5 Minutes</div>
               </div>
               <div>
                 <div className="text-2xl mb-1">🎯</div>

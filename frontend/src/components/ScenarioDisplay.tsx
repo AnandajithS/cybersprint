@@ -1,6 +1,8 @@
 import { Scenario, Answer } from '../game/types';
 import { getConsequenceMessage } from '../game/gameState';
 
+const QR_IMAGE = '/assets/qr_code.jpeg';
+
 interface ScenarioDisplayProps {
   scenario: Scenario;
   onAction: (actionId: string) => void;
@@ -161,11 +163,7 @@ export default function ScenarioDisplay({
             <div className="bg-gray-900/80 rounded-xl p-4 border border-gray-600 text-center">
               <div className="text-6xl mb-3 animate-pulse-slow">{styles.icon}</div>
               <div className="bg-white p-3 rounded inline-block mb-3">
-                <div className="grid grid-cols-5 gap-0.5 w-24 h-24">
-                  {Array.from({ length: 25 }).map((_, i) => (
-                    <div key={i} className={Math.sin(i * 7) > 0 ? 'bg-black' : 'bg-transparent'} style={{ width: '100%', height: '100%' }}></div>
-                  ))}
-                </div>
+                <img src={QR_IMAGE} alt={`QR code for ${scenario.title}`} className="w-40 h-40 object-contain" />
               </div>
               <p className="text-white font-medium mb-2">{scenario.title}</p>
               <p className="text-gray-400 text-sm leading-relaxed">{scenario.content}</p>
@@ -215,18 +213,79 @@ export default function ScenarioDisplay({
   const getActionColors = (actionId: string) => {
     const base = "px-4 py-2 rounded-lg font-medium text-sm transition-all transform hover:scale-105 focus:outline-none focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed";
     switch (actionId) {
-      case 'open':
+      // Green — affirmative/engagement actions
+      case 'Reply':
+      case 'Continue':
+      case 'Open':
+      case 'Accept':
+      case 'Install':
+      case 'Donate':
+      case 'Send OTP':
+      case 'Click Link':
+      case 'Claim Reward':
+      case 'Complete Survey':
+      case 'Connect':
+      case 'Send Details':
+      case 'Submit Details':
+      case 'Open Link':
+      case 'Open File':
+      case 'Pay Fine':
+      case 'Pay Invoice':
+      case 'Buy Gift Card':
+      case 'Download Antivirus':
+      case 'Upgrade Now':
+      case 'Install Update':
+      case 'Install Tool':
+      case 'Click Refund Link':
         return `${base} bg-cyber-green/20 text-cyber-green border border-cyber-green/30 hover:bg-cyber-green/30`;
-      case 'ignore':
-        return `${base} bg-gray-600/20 text-gray-300 border border-gray-500/30 hover:bg-gray-600/30`;
-      case 'verify':
+      // Blue — verification/thinking actions
+      case 'Verify Sender':
+      case 'Verify Person':
+      case 'Verify Friend':
+      case 'Verify Teacher':
+      case 'Verify Account':
+      case 'Verify IT':
+      case 'Verify Update':
+      case 'Verify Organization':
+      case 'Verify Classmate':
+      case 'Verify Network':
+      case 'Verify Through Official App':
+      case 'Verify Through Official Website':
+      case 'Verify Through Official School Channel':
+      case 'Verify With School IT':
+      case 'Check Website':
+      case 'Check URL':
+      case 'Check Event With School':
+      case 'Check Account Directly':
+      case 'Check Library Account':
+      case 'Check Storage in Official App':
+      case 'Check Security App':
+      case 'Check Profile':
+      case 'Check Destination':
+      case 'Check Order':
+      case 'Check Login':
+      case 'Review Login':
+      case 'Review Passwords':
+      case 'Enable Security':
+      case 'Open Browser Settings':
         return `${base} bg-cyber-blue/20 text-cyber-blue border border-cyber-blue/30 hover:bg-cyber-blue/30`;
-      case 'report':
+      // Red — report/delete/danger actions
+      case 'Report':
+      case 'Delete':
         return `${base} bg-red-500/20 text-red-400 border border-red-500/30 hover:bg-red-500/30`;
-      case 'block':
+      // Yellow — block/quarantine actions
+      case 'Block':
+      case 'Eject':
         return `${base} bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 hover:bg-yellow-500/30`;
+      // Gray — neutral/dismissal actions
+      case 'Ignore':
+      case 'Dismiss':
+      case 'Close':
+      case 'Scan':
+      case 'Scan QR':
+      case 'Remind Me Later':
       default:
-        return `${base} bg-gray-600/20 text-gray-300 border border-gray-500/30`;
+        return `${base} bg-gray-600/20 text-gray-300 border border-gray-500/30 hover:bg-gray-600/30`;
     }
   };
 

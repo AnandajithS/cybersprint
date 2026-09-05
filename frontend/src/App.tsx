@@ -124,7 +124,7 @@ function App() {
         currentScenario: scenario,
         score: 0,
         health: 100,
-        timeRemaining: 600,
+        timeRemaining: 300,
         isGameRunning: true,
         lastAnswer: null,
         showFeedback: false

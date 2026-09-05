@@ -101,7 +101,7 @@ func main() {
 	loadScenarios()
 
 	gameSession = GameSession{
-		DurationSecs: 600,
+		DurationSecs: 300,
 	}
 
 	http.HandleFunc("/", serveFrontend)

@@ -7,7 +7,7 @@ export function createInitialState(): GameState {
     currentScenario: null,
     score: 0,
     health: 100,
-    timeRemaining: 600,
+    timeRemaining: 300,
     isGameRunning: false,
     lastAnswer: null,
     showFeedback: false,
