@@ -11,6 +11,8 @@ import {
   getStories,
   getRandomStoryOrder,
   getStep,
+  getStoryPoolSize,
+  STORIES_PER_SHOW,
 } from './game/stories';
 import {
   createInitialResources,
@@ -144,7 +146,13 @@ export default function App() {
   const orderedStories = storyOrder.length > 0 ? storyOrder : getStories();
 
   if (flow.stage === GameStage.Setup) {
-    return <Setup onStart={handleStart} storyCount={orderedStories.length} />;
+    return (
+      <Setup
+        onStart={handleStart}
+        storyCount={orderedStories.length === getStoryPoolSize() ? STORIES_PER_SHOW : orderedStories.length}
+        poolCount={getStoryPoolSize()}
+      />
+    );
   }
 
   if (showResults || flow.stage === GameStage.Results) {
@@ -159,7 +167,7 @@ export default function App() {
   }
 
   if (!currentStory || !currentStep) {
-    return <Setup onStart={handleStart} storyCount={getStories().length} />;
+    return <Setup onStart={handleStart} storyCount={STORIES_PER_SHOW} poolCount={getStoryPoolSize()} />;
   }
 
   return (

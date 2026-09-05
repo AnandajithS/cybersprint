@@ -5,6 +5,9 @@ Call a student up, let them make decisions on the big screen, and watch the **co
 
 **For 13–14-year-old Indian school students. Total session: ~10 minutes.**
 
+Each show pulls a **random 7 of the 13 available stories** (calibrated to
+the ~10-minute session and the scoring curve), so no two shows are identical.
+
 ---
 
 ## The New Format — An Interactive Story, Not a Quiz
@@ -61,7 +64,7 @@ WebSocket, and no runtime fetch of scenario data**.
 
 ## Features
 
-- **7 branching stories**, many connected into mini-stories where an earlier decision affects what happens next
+- **13 branching stories** (7 random per show), many connected into mini-stories where an earlier decision affects what happens next
 - **Consequence screens** after every meaningful decision (no "CORRECT!" / "WRONG!" — the game teaches through outcomes)
 - **Live resource state**: Security, Money Saved (₹), Threats Stopped, Good Decisions
 - **Friendly end screen** — "Cyber Defender Result" with a fun title, not a grade
@@ -80,7 +83,7 @@ cybersprint/
 │       ├── components/          # StepDisplay, ConsequenceCard, StoryIntro, ResourceBar, StoryCompleteCard
 │       ├── game/                # stories (loader), gameState (effects & scoring), types
 │       │   └── data/
-│       │       └── scenarios.json   # ← the 7 branching stories (bundled into the app)
+│       │       └── scenarios.json   # ← the 13 branching stories (bundled into the app)
 │       ├── assets/qr_code.jpeg  # bundled via Vite
 │       └── screens/             # Setup, Game, Results
 ├── vercel.json                  # Vercel build/output configuration
@@ -139,9 +142,12 @@ An action with no `nextStep` (or a step with no `actions`) ends that branch of t
 | `threatsStopped` | Count of scams reported / prevented. |
 | `goodDecisions` | Number of sensible judgment calls. |
 
-The 7 stories cover: a compromised friend's account, a fake YouTube free-coins ad, a school
+The 13 stories cover: a compromised friend's account, a fake YouTube free-coins ad, a school
 QR-code scam, a fake "parent" UPI request, a fake Instagram security alert, a suspicious
-file from a friend, and a genuinely legitimate school notice.
+file from a friend, a genuinely legitimate school notice, a fake browser update, a thumb
+drive found at school, an OTP account-takeover attempt, a free-mobile-data SIM-swap scam,
+an in-game item trade that asks for your password, and a "friend" begging you to buy a gift
+card for them. Each show plays a random 7 of these 13.
 
 ---
 

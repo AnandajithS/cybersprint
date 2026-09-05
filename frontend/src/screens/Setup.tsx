@@ -1,9 +1,10 @@
 interface SetupProps {
   onStart: () => void;
   storyCount: number;
+  poolCount: number;
 }
 
-export default function Setup({ onStart, storyCount }: SetupProps) {
+export default function Setup({ onStart, storyCount, poolCount }: SetupProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-cyber-dark via-gray-900 to-cyber-dark flex items-center justify-center p-4">
       <div className="max-w-3xl w-full text-center">
@@ -30,7 +31,7 @@ export default function Setup({ onStart, storyCount }: SetupProps) {
           <div className="grid grid-cols-3 gap-4 text-center mb-8">
             <div>
               <div className="text-5xl mb-2">🎮</div>
-              <div className="text-gray-300 font-medium text-lg">{storyCount} Stories</div>
+              <div className="text-gray-300 font-medium text-lg">{storyCount} of {poolCount} Stories</div>
             </div>
             <div>
               <div className="text-5xl mb-2">⏱️</div>
