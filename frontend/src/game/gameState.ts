@@ -1,118 +1,80 @@
-import { GameState, Scenario, LeaderboardEntry, Verdict } from './types';
+import { GameResult, ResourceState, Step } from './types';
 
-export function createInitialState(): GameState {
+export function createInitialResources(): ResourceState {
   return {
-    phase: 'setup',
-    team: null,
-    currentScenario: null,
-    score: 0,
-    health: 100,
-    timeRemaining: 300,
-    isGameRunning: false,
-    lastAnswer: null,
-    showFeedback: false,
-    leaderboard: [],
+    security: 50,
+    moneySaved: 0,
+    threatsStopped: 0,
+    goodDecisions: 0,
   };
 }
 
-export function evaluateVerdict(scenario: Scenario, action: string): Verdict {
-  if (action === scenario.correctAction) return 'perfect';
-  if ((scenario.acceptableActions || []).includes(action)) return 'acceptable';
-  return 'wrong';
+function clamp(value: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, value));
 }
 
-export function calculateScore(
-  state: GameState,
-  scenario: Scenario,
-  action: string,
-  responseTime: number
-): { score: number; health: number } {
-  const verdict = evaluateVerdict(scenario, action);
-  let scoreChange = 0;
-  let healthChange = 0;
+export function applyEffects(
+  state: ResourceState,
+  effects: Partial<ResourceState>
+): ResourceState {
+  return {
+    security: clamp(state.security + (effects.security || 0), 0, 100),
+    moneySaved: state.moneySaved + (effects.moneySaved || 0),
+    threatsStopped: state.threatsStopped + (effects.threatsStopped || 0),
+    goodDecisions: state.goodDecisions + (effects.goodDecisions || 0),
+  };
+}
 
-  if (verdict === 'perfect') {
-    scoreChange = scenario.points;
-    healthChange = 5;
-  } else if (verdict === 'acceptable') {
-    scoreChange = 0;
-    healthChange = 2;
+export function isTerminalStep(step: Step): boolean {
+  return step.actions.length === 0;
+}
+
+export function getStepGoesToResult(step: Step): boolean {
+  return step.type === 'result' || isTerminalStep(step);
+}
+
+export function computeResult(state: ResourceState): GameResult {
+  const security = clamp(state.security, 0, 100);
+  const moneySaved = Math.max(0, state.moneySaved);
+  const threatsStopped = Math.max(0, state.threatsStopped);
+  const goodDecisions = Math.max(0, state.goodDecisions);
+
+  const score =
+    security * 0.7 +
+    goodDecisions * 10 +
+    threatsStopped * 8 +
+    clamp(moneySaved / 100, 0, 20);
+
+  let title: string;
+  let tagline: string;
+
+  if (score >= 120) {
+    title = 'Cyber Defender';
+    tagline = 'You see through scams like a pro! The class is in the safest hands.';
+  } else if (score >= 95) {
+    title = 'Sharp-eyed Investigator';
+    tagline = 'Great instincts! You catch most traps and keep people safe.';
+  } else if (score >= 70) {
+    title = 'Security Pro';
+    tagline = 'You make solid calls. A few more checks and you will be unstoppable.';
+  } else if (score >= 45) {
+    title = 'Getting Suspicious 😅';
+    tagline = 'You trusted too easily. Ask more questions before you act!';
   } else {
-    scoreChange = -Math.floor(scenario.points / 3);
-    healthChange = -10;
-
-    if (scenario.category === 'malware') {
-      healthChange = -25;
-    } else if (scenario.category === 'phishing') {
-      healthChange = -15;
-    }
+    title = 'Needs More Suspicion 😅';
+    tagline = 'Whoa! Watch out for red flags like passwords, OTPs and too-good deals.';
   }
 
-  const speedBonus = Math.max(0, Math.floor((10 - responseTime) * 2));
-  if (verdict === 'perfect' && responseTime < 10) {
-    scoreChange += speedBonus;
-  }
-
-  const newScore = Math.max(0, state.score + scoreChange);
-  const newHealth = Math.max(0, Math.min(100, state.health + healthChange));
-
-  return { score: newScore, health: newHealth };
+  return {
+    security,
+    moneySaved,
+    threatsStopped,
+    goodDecisions,
+    title,
+    tagline,
+  };
 }
 
-export function formatTime(seconds: number): string {
-  const mins = Math.floor(seconds / 60);
-  const secs = seconds % 60;
-  return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-}
-
-export function getHealthColor(health: number): string {
-  if (health >= 80) return 'text-cyber-green';
-  if (health >= 60) return 'text-cyber-yellow';
-  if (health >= 40) return 'text-orange-500';
-  return 'text-cyber-red';
-}
-
-export function getHealthBarColor(health: number): string {
-  if (health >= 80) return 'bg-cyber-green';
-  if (health >= 60) return 'bg-cyber-yellow';
-  if (health >= 40) return 'bg-orange-500';
-  return 'bg-cyber-red';
-}
-
-export function getScenarioIcon(type: string): string {
-  switch (type) {
-    case 'email': return '📧';
-    case 'chat': return '💬';
-    case 'browser': return '🌐';
-    case 'notification': return '🔔';
-    case 'qr': return '📱';
-    case 'usb': return '💾';
-    default: return '📨';
-  }
-}
-
-export function getConsequenceMessage(consequence: string): string {
-  switch (consequence) {
-    case 'malware_infection':
-      return '⚠️ Malware has been installed on your system! Your files may be at risk.';
-    case 'credential_theft':
-      return '🔓 Your login credentials may have been stolen! Change your passwords immediately.';
-    case 'data_loss':
-      return '💾 Important files have been encrypted or deleted!';
-    case 'account_compromise':
-      return '👤 Your social media account has been compromised!';
-    default:
-      return '⚠️ This could have led to a security incident.';
-  }
-}
-
-export function sortLeaderboard(entries: LeaderboardEntry[]): LeaderboardEntry[] {
-  return [...entries].sort((a, b) => {
-    if (b.score !== a.score) return b.score - a.score;
-    if (b.accuracy !== a.accuracy) return b.accuracy - a.accuracy;
-    return a.avgTime - b.avgTime;
-  }).map((entry, index) => ({
-    ...entry,
-    rank: index + 1,
-  }));
+export function clampSecurity(n: number): number {
+  return clamp(n, 0, 100);
 }

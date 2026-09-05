@@ -1,71 +1,76 @@
+export interface Effects {
+  security?: number;
+  moneySaved?: number;
+  threatsStopped?: number;
+  goodDecisions?: number;
+}
+
 export interface Action {
   id: string;
   label: string;
+  nextStep?: string;
+  consequence: string;
+  newInfo?: string;
+  effects: Effects;
 }
 
-export interface Scenario {
+export interface Step {
   id: string;
-  type: 'email' | 'chat' | 'browser' | 'qr' | 'usb' | 'notification';
-  difficulty: 1 | 2 | 3;
+  type: 'chat' | 'browser' | 'notification' | 'qr' | 'file' | 'sms' | 'email' | 'result';
   title: string;
-  sender?: string;
+  origin?: string;
+  time?: string;
   content: string;
-  metadata?: Record<string, string>;
+  question: string;
   actions: Action[];
-  correctAction: string;
-  acceptableActions?: string[];
-  points: number;
-  explanation: string;
-  category: string;
 }
 
-export type Verdict = 'perfect' | 'acceptable' | 'wrong';
-
-export interface Answer {
-  scenarioId: string;
-  action: string;
-  verdict: Verdict;
-  correct: boolean;
-  pointsEarned: number;
-  explanation: string;
-  consequence?: string;
-}
-
-export interface Team {
+export interface Story {
   id: string;
-  name: string;
-  score: number;
-  correctAnswers: number;
-  acceptableAnswers: number;
-  totalAnswers: number;
-  totalResponseTime: number;
-  currentScenario?: Scenario;
-  scenarioIndex: number;
-  answeredIds: Set<string>;
+  title: string;
+  subtitle: string;
+  icon: string;
+  difficulty: 1 | 2 | 3;
+  intro: string;
+  resolution: string;
+  steps: Step[];
 }
 
-export interface LeaderboardEntry {
-  rank: number;
-  teamId: string;
-  teamName: string;
-  score: number;
-  accuracy: number;
-  avgTime: number;
-  correct: number;
-  total: number;
+export interface ResourceState {
+  security: number;
+  moneySaved: number;
+  threatsStopped: number;
+  goodDecisions: number;
 }
 
-export type GamePhase = 'setup' | 'playing' | 'results';
+export interface DecisionRecord {
+  storyId: string;
+  stepId: string;
+  actionLabel: string;
+  consequence: string;
+  effects: Effects;
+}
 
-export interface GameState {
-  phase: GamePhase;
-  team: Team | null;
-  currentScenario: Scenario | null;
-  score: number;
-  health: number;
-  timeRemaining: number;
-  isGameRunning: boolean;
-  lastAnswer: Answer | null;
-  showFeedback: boolean;
-  leaderboard: LeaderboardEntry[];
+export interface GameResult {
+  security: number;
+  moneySaved: number;
+  threatsStopped: number;
+  goodDecisions: number;
+  title: string;
+  tagline: string;
+}
+
+export enum GameStage {
+  Setup = 'setup',
+  StoryIntro = 'storyIntro',
+  Decision = 'decision',
+  Consequence = 'consequence',
+  StoryComplete = 'storyComplete',
+  Results = 'results',
+}
+
+export interface ActiveStory {
+  story: Story;
+  storyIndex: number; // index into the ordered list
+  currentStepId: string;
 }

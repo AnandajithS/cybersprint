@@ -1,0 +1,993 @@
+[
+  {
+    "id": "story-01",
+    "title": "Your Friend's Account",
+    "subtitle": "A friend sends you a link that seems too good to be true.",
+    "icon": "👥",
+    "difficulty": 2,
+    "intro": "Aarav from your class has sent you a WhatsApp message. He says he found a way to get FREE unlimited game coins. Let's see what you do.",
+    "resolution": "Keep talking to your friends if something feels off. Next time someone 'you know' sends something weird, check with them first — their account might be hacked!",
+    "steps": [
+      {
+        "id": "step-1",
+        "type": "chat",
+        "title": "WhatsApp",
+        "origin": "Aarav",
+        "time": "10:42 PM",
+        "content": "Bro!! Check out this site giving FREE unlimited game coins!! 🎮🪙 I'm using it right now. Here: g33k-coins.deals/login — Hurry before they fix it! 😂🔥",
+        "question": "Aarav sent you a link promising free game coins. What should you do?",
+        "actions": [
+          {
+            "id": "ask",
+            "label": "Ask Aarav about it",
+            "nextStep": "step-b-ask",
+            "consequence": "You reply: 'Hey dude, did you really send this? 👀'",
+            "newInfo": "Aarav replies: 'What?! I never sent that! My account got hacked or something. DON'T click it!!'",
+            "effects": { "security": 3, "goodDecisions": 1 }
+          },
+          {
+            "id": "investigate",
+            "label": "Look at the link closely",
+            "nextStep": "step-b-investigate",
+            "consequence": "You inspect the address carefully before clicking anything.",
+            "newInfo": "The link is 'g33k-coins.deals' — that's not a real gaming company. And the page asks you to 'log in with your game password to claim coins.' That's a huge red flag.",
+            "effects": { "security": 5, "goodDecisions": 1 }
+          },
+          {
+            "id": "open",
+            "label": "Open the link",
+            "nextStep": "step-b-open",
+            "consequence": "You tap the link. A website opens that looks exactly like your game's login screen.",
+            "newInfo": "The page says: 'ENTER YOUR GAME PASSWORD TO CLAIM 10,000 FREE COINS NOW!' and there's a timer counting down.",
+            "effects": { "security": -10, "threatsStopped": 0 }
+          },
+          {
+            "id": "ignore",
+            "label": "Ignore the message",
+            "nextStep": "step-b-ignore",
+            "consequence": "You close WhatsApp and keep playing your game. Nothing bad happens right now.",
+            "effects": { "security": 2 }
+          }
+        ]
+      },
+      {
+        "id": "step-b-ask",
+        "type": "chat",
+        "title": "WhatsApp",
+        "origin": "You",
+        "time": "10:44 PM",
+        "content": "Aarav says his account was hacked and he definitely didn't send that link.",
+        "question": "Aarav's account is compromised. He might have shared that link to lots of friends. What should you do?",
+        "actions": [
+          {
+            "id": "report",
+            "label": "Report Aarav's account",
+            "nextStep": "step-end-safe",
+            "consequence": "You report the account using WhatsApp's 'Report' option and it gets reviewed and locked.",
+            "newInfo": "WhatsApp says thanks for reporting — harmful accounts like this get blocked so they can't trick more people.",
+            "effects": { "security": 8, "threatsStopped": 1, "goodDecisions": 1 }
+          },
+          {
+            "id": "tellfriends",
+            "label": "Warn your classmates",
+            "nextStep": "step-end-warn",
+            "consequence": "You tell the group chat: 'Don't click that! Aarav's account is hacked!'",
+            "newInfo": "Your friends see the warning. You've helped stop the scam from spreading further, but the account isn't locked yet.",
+            "effects": { "security": 6, "threatsStopped": 1, "goodDecisions": 1 }
+          },
+          {
+            "id": "sharepass",
+            "label": "Ask Aarav for his password",
+            "nextStep": "step-end-bad",
+            "consequence": "You ask Aarav for his password so you can 'fix' his account. Aarav shares it with you.",
+            "newInfo": "Now you have Aarav's password. But sharing passwords is a bad idea — and Aarav has just given his away! Anyone who saw it can use it. Admin is not happy.",
+            "effects": { "security": -12 }
+          },
+          {
+            "id": "ignore",
+            "label": "It's his problem, ignore it",
+            "nextStep": "step-end-ignore2",
+            "consequence": "You decide it's not your problem and move on.",
+            "newInfo": "His hacked account stays active and keeps sending fake links to other students.",
+            "effects": { "security": -4 }
+          }
+        ]
+      },
+      {
+        "id": "step-b-investigate",
+        "type": "browser",
+        "title": "Link Inspector",
+        "origin": "g33k-coins.deals",
+        "time": "",
+        "content": "You zoom in on the address. It's 'g33k-coins.deals' — a weird made-up name. No real gaming company uses that.",
+        "question": "You've discovered this link looks fake. What do you do with this information?",
+        "actions": [
+          {
+            "id": "warn",
+            "label": "Warn Aarav",
+            "nextStep": "step-end-safe2",
+            "consequence": "You message Aarav. He confirms he never sent this — his account was hacked.",
+            "newInfo": "You've caught a real scam attempt before it could hurt anyone. The link gets reported.",
+            "effects": { "security": 8, "threatsStopped": 1, "goodDecisions": 1 }
+          },
+          {
+            "id": "open2",
+            "label": "Log in anyway for the coins",
+            "nextStep": "step-end-bad2",
+            "consequence": "You really want those free coins, so you type in your game password.",
+            "newInfo": "The moment you press enter, the page logs your password to the scammer. Your game account is now theirs. 💔",
+            "effects": { "security": -15, "moneySaved": 0 }
+          },
+          {
+            "id": "close",
+            "label": "Close it and move on",
+            "nextStep": "step-end-ok",
+            "consequence": "You close the page. You didn't lose anything, but the link is still out there.",
+            "newInfo": "Aarav's account is still hacked and might keep sharing this. Someone else could fall for it.",
+            "effects": { "security": 3 }
+          }
+        ]
+      },
+      {
+        "id": "step-b-open",
+        "type": "browser",
+        "title": "The Fake Login",
+        "origin": "g33k-coins.deals",
+        "time": "10:43 PM",
+        "content": "The page looks JUST like your game's login screen — but something feels off. It's asking for your password to 'claim coins.'",
+        "question": "The page wants your game password. What now?",
+        "actions": [
+          {
+            "id": "leave",
+            "label": "Close the page — this is a trick",
+            "nextStep": "step-end-recover",
+            "consequence": "You realize this is a fake login page and close it immediately.",
+            "newInfo": "Good thinking! You spotted the trick before entering anything. Always check: real games never ask for your password to give you free stuff.",
+            "effects": { "security": 5, "goodDecisions": 1 }
+          },
+          {
+            "id": "enter",
+            "label": "Type your password to claim",
+            "nextStep": "step-end-bad3",
+            "consequence": "You enter your password. The page says 'CLAIMING...' and then your real game app starts asking for a security code.",
+            "newInfo": "Your password was stolen. The scammer is trying to take over your account right now! You change your password just in time, but you almost lost it all.",
+            "effects": { "security": -18 }
+          }
+        ]
+      },
+      {
+        "id": "step-b-ignore",
+        "type": "chat",
+        "title": "WhatsApp",
+        "origin": "Aarav",
+        "time": "10:47 PM",
+        "content": "You've ignored the message. But Aarav has now sent the SAME suspicious link to three other people from your class.",
+        "question": "The message keeps spreading. People are clicking it. What do you do now?",
+        "actions": [
+          {
+            "id": "report",
+            "label": "Report it now",
+            "nextStep": "step-end-safe3",
+            "consequence": "You report the message and Aarav's account. It's removed and locked.",
+            "newInfo": "Better late than never! You stopped the scam from spreading even further.",
+            "effects": { "security": 6, "threatsStopped": 1, "goodDecisions": 1 }
+          },
+          {
+            "id": "keepignoring",
+            "label": "Keep ignoring it",
+            "nextStep": "step-end-ignore3",
+            "consequence": "You keep ignoring it. Ryah from your class clicks the link and her game account gets hacked.",
+            "newInfo": "Sometimes ignoring a threat means it stays dangerous for others. Reporting helps everyone.",
+            "effects": { "security": -8 }
+          }
+        ]
+      },
+      {
+        "id": "step-end-safe",
+        "type": "result",
+        "title": "🚩 Good catch!",
+        "origin": "",
+        "time": "",
+        "content": "You reported Aarav's hacked account. The scam link is blocked and can't hurt anyone else. Your class is safer because you spoke up.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-end-warn",
+        "type": "result",
+        "title": "🚩 Good instinct!",
+        "origin": "",
+        "time": "",
+        "content": "You warned your friends just in time. The scam couldn't spread far. Next time, also report the account so it gets locked for good.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-end-bad",
+        "type": "result",
+        "title": "👎 Password sharing is risky",
+        "origin": "",
+        "time": "",
+        "content": "Sharing passwords is never a good idea — even with friends. Anyone who sees it can misuse the account. Encourage Aarav to use 'Forgot password' and turn on 2FA instead.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-end-ignore2",
+        "type": "result",
+        "title": "⚠️ The threat stayed active",
+        "origin": "",
+        "time": "",
+        "content": "Ignoring it kept YOU safe for now, but the hacked account kept sending the fake link to others. Reporting would have stopped it.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-end-safe2",
+        "type": "result",
+        "title": "🚩 You caught a real scam!",
+        "origin": "",
+        "time": "",
+        "content": "You inspected the link, realized it was fake, and warned Aarav. This is exactly how a sharp-eyed cyber defender thinks.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-end-bad2",
+        "type": "result",
+        "title": "👎 Your account got hacked",
+        "origin": "",
+        "time": "",
+        "content": "Entering your password on that fake page handed your game account to a scammer. Real giveaways never ask for your password. Change it immediately!",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-end-ok",
+        "type": "result",
+        "title": "⚠️ You're safe, but not the link",
+        "origin": "",
+        "time": "",
+        "content": "Closing the page kept you safe. But Aarav's account is still hacked, so the link is still being sent around. Consider warning Aarav and reporting it.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-end-recover",
+        "type": "result",
+        "title": "🚩 Great escape!",
+        "origin": "",
+        "time": "",
+        "content": "You spotted the fake login and backed out before entering your password. Real games NEVER ask for your password to give free items.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-end-bad3",
+        "type": "result",
+        "title": "👎 That was close",
+        "origin": "",
+        "time": "",
+        "content": "You almost lost your account. You recovered by changing your password quickly, but you learned a hard lesson: never type your password on a page you opened from a random link.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-end-safe3",
+        "type": "result",
+        "title": "🚩 Better late than never!",
+        "origin": "",
+        "time": "",
+        "content": "You reported the message and locked Aarav's account. The spreading stops here. Reporting is one of the most powerful things a cyber defender can do.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-end-ignore3",
+        "type": "result",
+        "title": "⚠️ The scam found another victim",
+        "origin": "",
+        "time": "",
+        "content": "By staying quiet, you let the scam reach your classmate Ryah — her account got hacked. Reporting early helps everyone, not just you.",
+        "question": "",
+        "actions": []
+      }
+    ]
+  },
+  {
+    "id": "story-02",
+    "title": "Free Game Coins",
+    "subtitle": "A too-good-to-be-true offer for your favourite game.",
+    "icon": "🎮",
+    "difficulty": 3,
+    "intro": "While watching gameplay videos on YouTube, a video in your feed claims you can unlock FREE skins and coins for your favourite game — if you 'verify your account.' Let's see what happens.",
+    "resolution": "If an offer is too good to be true, it usually is. Real games don't give away coins for 'verification'. Stay sharp!",
+    "steps": [
+      {
+        "id": "step-1",
+        "type": "notification",
+        "title": "YouTube Ad",
+        "origin": "FreeCoinz4U",
+        "time": "4:05 PM",
+        "content": "🎁 FREE 50,000 COINS IN MY FAVOURITE GAME! Watch this video and click VERIFY to claim instantly! Only for the next 10 minutes!! 🔥",
+        "question": "The ad promises free coins if you 'verify your account.' What should you do?",
+        "actions": [
+          {
+            "id": "verify",
+            "label": "Click VERIFY to claim",
+            "nextStep": "step-verify",
+            "consequence": "You tap VERIFY. A form opens asking for your email, your password, and a code.",
+            "newInfo": "It asks for your 'game security code' (OTP). Real giveaways never ask for your password or a one-time code.",
+            "effects": { "security": -10 }
+          },
+          {
+            "id": "checkgame",
+            "label": "Check the official game app",
+            "nextStep": "step-check",
+            "consequence": "Instead of clicking, you open your game's official app to check if there's really a giveaway.",
+            "newInfo": "There is NO giveaway in the official app. The YouTube ad is a fake trying to steal accounts.",
+            "effects": { "security": 6, "goodDecisions": 1 }
+          },
+          {
+            "id": "ignore",
+            "label": "Skip the ad",
+            "nextStep": "step-ignore",
+            "consequence": "You skip the ad and go back to watching gameplay.",
+            "newInfo": "You dodged the trap. Nothing bad happens, and the fake offer scrolls away.",
+            "effects": { "security": 4 }
+          }
+        ]
+      },
+      {
+        "id": "step-verify",
+        "type": "browser",
+        "title": "Verify Account",
+        "origin": "freecoiling.vip",
+        "time": "4:06 PM",
+        "content": "The form says: 'Enter your game email, password, and the one-time code sent to your phone to verify and claim your coins.'",
+        "question": "It's asking for your password AND a security code. What now?",
+        "actions": [
+          {
+            "id": "share",
+            "label": "Enter the details",
+            "nextStep": "step-verifybad",
+            "consequence": "You type in your email, password, and the code you received.",
+            "newInfo": "A real giveaway would NEVER need your password or your security code. A scammer now has this info.",
+            "effects": { "security": -18 }
+          },
+          {
+            "id": "stop",
+            "label": "Stop and close it",
+            "nextStep": "step-verifyok",
+            "consequence": "You stop. Asking for a password AND a security code is a huge warning sign.",
+            "newInfo": "Good catch. Anyone asking for your password and your code is trying to steal your account — even if they promise free coins.",
+            "effects": { "security": 4, "goodDecisions": 1 }
+          }
+        ]
+      },
+      {
+        "id": "step-verifybad",
+        "type": "notification",
+        "title": "Your Game",
+        "origin": "Game Security",
+        "time": "4:08 PM",
+        "content": "🚨 ALERT: Someone just logged in to your game account from a new device. If this wasn't you, your account info may have been stolen!",
+        "question": "The scammer is trying to take over your account! What should you do?",
+        "actions": [
+          {
+            "id": "changepass",
+            "label": "Change password now",
+            "nextStep": "step-verifyrecover",
+            "consequence": "You immediately change your password and log the stranger out.",
+            "newInfo": "You acted fast. Changing your password kicked the scammer out before they could steal your skins.",
+            "effects": { "security": -6, "goodDecisions": 1 }
+          },
+          {
+            "id": "ignore2",
+            "label": "Ignore the alert",
+            "nextStep": "step-verifylost",
+            "consequence": "You ignore the alert and keep watching videos.",
+            "newInfo": "Minutes later, the scammer takes over your account, spends all your in-game coins, and changes the password.",
+            "effects": { "security": -25 }
+          }
+        ]
+      },
+      {
+        "id": "step-verifyrecover",
+        "type": "result",
+        "title": "😅 Phew! Recovered",
+        "origin": "",
+        "time": "",
+        "content": "You lost nothing because you acted fast. But you still gave away your info once. Remember: never share your password or a security code with a website promising free stuff.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-verifylost",
+        "type": "result",
+        "title": "👎 Account stolen",
+        "origin": "",
+        "time": "",
+        "content": "You ignored the warning and lost your account. The scammer spent your coins and locked you out. You had to contact support to get it back.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-verifyok",
+        "type": "result",
+        "title": "🚩 Sharp eyes!",
+        "origin": "",
+        "time": "",
+        "content": "You recognised the trap before it could hurt you. Password + security code = red flag. No real giveaway works this way.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-check",
+        "type": "result",
+        "title": "🚩 Great detective work!",
+        "origin": "",
+        "time": "",
+        "content": "You checked the official app and found no giveaway. The YouTube ad was a fake. Verifying through official channels is a top-tier cyber habit.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-ignore",
+        "type": "result",
+        "title": "👍 Safe and sound",
+        "origin": "",
+        "time": "",
+        "content": "Skipping the suspicious ad kept you safe. Not every offer is worth a click — trusting your gut is smart.",
+        "question": "",
+        "actions": []
+      }
+    ]
+  },
+  {
+    "id": "story-03",
+    "title": "The School Show QR Code",
+    "subtitle": "A poster with a QR code promising a big prize.",
+    "icon": "🖼️",
+    "difficulty": 2,
+    "intro": "On the notice board near the canteen, there's a colourful poster for the 'Inter-School Coding Championship' with a QR code. Scanning it says you can 'register' and win ₹5,000. Let's investigate.",
+    "resolution": "QR codes can hide links just like any other URL. When a code seems off, check with the school before scanning. A real competition won't ask for OTPs or passwords.",
+    "steps": [
+      {
+        "id": "step-1",
+        "type": "qr",
+        "title": "Poster",
+        "origin": "Notice Board",
+        "time": "1:30 PM",
+        "content": "The poster is bright and exciting: 'SCAN TO REGISTER — Inter-School Coding Championship, First Prize ₹5,000, FREE entry!' The QR code looks normal, but you notice the poster isn't official-school printed.",
+        "question": "The QR code promises a big prize. What should you do?",
+        "actions": [
+          {
+            "id": "scan",
+            "label": "Scan the QR code",
+            "nextStep": "step-scan",
+            "consequence": "You scan the code with your phone. It opens a webpage asking for your details to 'complete registration.'",
+            "newInfo": "The page asks for your name, class, phone number — and then a password and OTP 'to confirm your identity.'",
+            "effects": { "security": -8 }
+          },
+          {
+            "id": "askschool",
+            "label": "Ask a teacher first",
+            "nextStep": "step-ask",
+            "consequence": "You walk to the computer lab teacher and ask if this competition is real.",
+            "newInfo": "The teacher says: 'Good thinking to ask! We have NOT organised any such competition. That poster is fake.'",
+            "effects": { "security": 7, "goodDecisions": 1 }
+          },
+          {
+            "id": "ignore",
+            "label": "Skip it",
+            "nextStep": "step-ignore",
+            "consequence": "You decide not to scan and head to class.",
+            "newInfo": "You stayed safe from a possible trap. A few classmates who scanned it got strange messages asking for money.",
+            "effects": { "security": 4 }
+          }
+        ]
+      },
+      {
+        "id": "step-scan",
+        "type": "browser",
+        "title": "Registration Form",
+        "origin": "scholar-camp.xyz",
+        "time": "1:31 PM",
+        "content": "The webpage says: 'Welcome to the Inter-School Coding Championship. Enter your details and then confirm with your OTP to complete registration.'",
+        "question": "It's asking for your OTP (one-time code). What now?",
+        "actions": [
+          {
+            "id": "enterotp",
+            "label": "Enter your OTP",
+            "nextStep": "step-otpbad",
+            "consequence": "You enter the OTP that was sent to your phone.",
+            "newInfo": "⚠️ That OTP was for changing your phone's settings! The scammer now has control of your SIM and could reset your passwords.",
+            "effects": { "security": -20 }
+          },
+          {
+            "id": "sharecode",
+            "label": "Enter only your details",
+            "nextStep": "step-otpok",
+            "consequence": "You fill in your name and class but refuse to share the OTP or any code.",
+            "newInfo": "Refusing to share codes and OTPs is the right move. The page can't do anything harmful with just a name.",
+            "effects": { "security": 4, "goodDecisions": 1 }
+          },
+          {
+            "id": "close",
+            "label": "Close the page",
+            "nextStep": "step-otpclose",
+            "consequence": "You back out of the page and report it to your teacher.",
+            "newInfo": "Your teacher confirms the school never organised this. You helped stop a QR scam that tricked others.",
+            "effects": { "security": 5, "threatsStopped": 1, "goodDecisions": 1 }
+          }
+        ]
+      },
+      {
+        "id": "step-ask",
+        "type": "result",
+        "title": "🚩 Fantastic question!",
+        "origin": "",
+        "time": "",
+        "content": "Asking a teacher saved you from a fake competition scam. Some of your classmates who scanned it are now getting shady messages. Verifying with a real adult you trust is always smart.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-ignore",
+        "type": "result",
+        "title": "👍 Safe choice",
+        "origin": "",
+        "time": "",
+        "content": "You avoided a QR code nobody could vouch for. That's a solid cyber habit. Just remember — some posters ARE real, so when in doubt, ask the school.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-otpbad",
+        "type": "result",
+        "title": "👎 That was a serious mistake",
+        "origin": "",
+        "time": "",
+        "content": "Sharing an OTP let a scammer into things you didn't expect. OTPs and security codes are secret — they should only ever be entered into the official app that sent them, never typed into a random webpage.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-otpok",
+        "type": "result",
+        "title": "🚩 Smart boundary!",
+        "origin": "",
+        "time": "",
+        "content": "You gave harmless details but refused to share your OTP. OTPs protect your accounts — never give them away, no matter what a page promises.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-otpclose",
+        "type": "result",
+        "title": "🚩 You helped stop a scam!",
+        "origin": "",
+        "time": "",
+        "content": "You backed out AND told your teacher. The fake QR poster gets taken down, protecting the whole school. That's being a cyber hero!",
+        "question": "",
+        "actions": []
+      }
+    ]
+  },
+  {
+    "id": "story-04",
+    "title": "Mom Needs Money",
+    "subtitle": "A message that looks like it's from your parent.",
+    "icon": "📲",
+    "difficulty": 3,
+    "intro": "You get a message on a random number that claims to be your mom. It says she left her account locked and needs you to send her a verification code. Let's see what you decide.",
+    "resolution": "Impersonators use urgency and 'family' to make you act fast. Whenever someone asks for money, codes, or OTPs — stop and verify with the real person by voice or in person.",
+    "steps": [
+      {
+        "id": "step-1",
+        "type": "sms",
+        "title": "SMS / WhatsApp",
+        "origin": "+91 98xxxxxx12",
+        "time": "6:15 PM",
+        "content": "Hello beta, this is mom. My phone isn't working. They locked my bank account. I need a UPI payment to buy something important. Send ₹2,000 to this number — I'll return it tonight. Don't tell dad, he'll worry.",
+        "question": "'Mom' wants you to send ₹2,000 right now. What should you do?",
+        "actions": [
+          {
+            "id": "send",
+            "label": "Send the money",
+            "nextStep": "step-send",
+            "consequence": "Feeling worried, you send ₹2,000 to the number.",
+            "newInfo": "The number isn't your mom's — it's a scammer. The money is gone, and your real mom never asked for it.",
+            "effects": { "security": -12, "moneySaved": -2000 }
+          },
+          {
+            "id": "verify",
+            "label": "Call your mom to check",
+            "nextStep": "step-verify",
+            "consequence": "You call your mom's real number. She says: 'What? I never sent that. My phone is fine. That's a scammer!'",
+            "newInfo": "Your real mom confirms it's fake. You almost sent ₹2,000 to a stranger who pretended to be her.",
+            "effects": { "security": 8, "moneySaved": 2000, "threatsStopped": 1, "goodDecisions": 1 }
+          },
+          {
+            "id": "report",
+            "label": "Ignore and tell dad",
+            "nextStep": "step-report",
+            "consequence": "You ignore it, tell your dad, and report the number as spam.",
+            "newInfo": "Your dad confirms your mom's phone is fine. Reporting the number helps warn others.",
+            "effects": { "security": 7, "moneySaved": 2000, "goodDecisions": 1 }
+          }
+        ]
+      },
+      {
+        "id": "step-send",
+        "type": "sms",
+        "title": "SMS / WhatsApp",
+        "origin": "+91 98xxxxxx12",
+        "time": "6:20 PM",
+        "content": "After you send the money, 'mom' messages again: 'I need ₹3,000 more. And can you also share the OTP I just sent to your phone? It's urgent!'",
+        "question": "They want MORE money and your OTP now. What do you do?",
+        "actions": [
+          {
+            "id": "moresend",
+            "label": "Send more and the OTP",
+            "nextStep": "step-morebad",
+            "consequence": "You send ₹3,000 more and the OTP.",
+            "newInfo": "The scammer now had your OTP too. You've lost ₹5,000 total and your phone number is compromised. You had to get the bank involved.",
+            "effects": { "security": -20, "moneySaved": -3000 }
+          },
+          {
+            "id": "stop",
+            "label": "Stop — call your mom",
+            "nextStep": "step-stop",
+            "consequence": "You realise something is wrong and call your real mom.",
+            "newInfo": "Your mom confirms it's a scam. Sadly the first ₹2,000 is gone, but you've stopped it from getting worse and the number is now reported.",
+            "effects": { "security": -8, "moneySaved": 0, "goodDecisions": 1 }
+          }
+        ]
+      },
+      {
+        "id": "step-verify",
+        "type": "result",
+        "title": "🚩 Excellent!",
+        "origin": "",
+        "time": "",
+        "content": "You verified with your actual mom using her real phone number. You saved ₹2,000 and stopped a scammer. When someone asks for money, always confirm by voice or in person — never by a random message.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-report",
+        "type": "result",
+        "title": "🚩 Smart and safe!",
+        "origin": "",
+        "time": "",
+        "content": "You ignored the scam, told your dad, and reported the number. No money lost and the number gets blocked for others. Great teamwork with your family.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-morebad",
+        "type": "result",
+        "title": "👎 A costly lesson",
+        "origin": "",
+        "time": "",
+        "content": "Sending money AND an OTP to a stranger cost ₹5,000 and almost your phone number. Never send money or codes to someone just because a message claims to be family.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-stop",
+        "type": "result",
+        "title": "😅 You stopped the bleeding",
+        "origin": "",
+        "time": "",
+        "content": "You lost ₹2,000 but you STOPPED the scam before sending the OTP. You learned: verify with the real person before sending money. Reporting the number helps too.",
+        "question": "",
+        "actions": []
+      }
+    ]
+  },
+  {
+    "id": "story-05",
+    "title": "Instagram Security Alert",
+    "subtitle": "A scary warning about your account.",
+    "icon": "🔔",
+    "difficulty": 2,
+    "intro": "A pop-up on a random website claims your Instagram account has been 'flagged' and will be 'permanently deleted unless you verify right now.' It gives you a link to fix it. Let's see what you do.",
+    "resolution": "Real companies don't threaten you with instant deletion through pop-ups or random links. Always go to the official app or website directly to check your account status.",
+    "steps": [
+      {
+        "id": "step-1",
+        "type": "browser",
+        "title": "Pop-up",
+        "origin": "insta-secure.web",
+        "time": "11:20 AM",
+        "content": "🚨 YOUR ACCOUNT HAS BEEN FLAGGED! Because you posted something against rules, your Instagram account will be PERMANENTLY DELETED in 24 hours. Click here to verify and keep your account! (HURRY!)",
+        "question": "The pop-up says your account will be deleted. What should you do?",
+        "actions": [
+          {
+            "id": "click",
+            "label": "Click Verify Now",
+            "nextStep": "step-click",
+            "consequence": "You click the link. It opens a page that looks like the Instagram login and asks for your username and password.",
+            "newInfo": "It's a fake login. Anyone who types their details here gives their account to a scammer.",
+            "effects": { "security": -12 }
+          },
+          {
+            "id": "official",
+            "label": "Open the official Instagram app",
+            "nextStep": "step-official",
+            "consequence": "Instead of clicking, you open the real Instagram app on your phone.",
+            "newInfo": "Your account is completely fine — no alerts, no flags. The pop-up was a fake designed to steal your login.",
+            "effects": { "security": 7, "goodDecisions": 1 }
+          },
+          {
+            "id": "close",
+            "label": "Close the pop-up",
+            "nextStep": "step-close",
+            "consequence": "You close the pop-up and ignore it.",
+            "newInfo": "You avoided the trap. Your account stays safe, and the fake pop-up does nothing.",
+            "effects": { "security": 5 }
+          }
+        ]
+      },
+      {
+        "id": "step-click",
+        "type": "browser",
+        "title": "Fake Login",
+        "origin": "insta-secure.web",
+        "time": "11:21 AM",
+        "content": "The page asks for your Instagram username and password to 'confirm your identity and save your account.'",
+        "question": "It's asking for your Instagram password. What now?",
+        "actions": [
+          {
+            "id": "enter",
+            "label": "Type your password",
+            "nextStep": "step-enterbad",
+            "consequence": "You type in your username and password.",
+            "newInfo": "A scammer now has your Instagram login. They log in on their device and start posting spam from your account, and change your password.",
+            "effects": { "security": -18 }
+          },
+          {
+            "id": "realize",
+            "label": "Realize and back out",
+            "nextStep": "step-realizeok",
+            "consequence": "You notice the address is weird ('insta-secure.web', not instagram.com) and close the page.",
+            "newInfo": "Good spot. The domain didn't match the real app, so you avoided entering your password.",
+            "effects": { "security": 4, "goodDecisions": 1 }
+          }
+        ]
+      },
+      {
+        "id": "step-official",
+        "type": "result",
+        "title": "🚩 Top-tier move!",
+        "origin": "",
+        "time": "",
+        "content": "You went straight to the OFFICIAL Instagram app to check, and found your account was perfectly fine. Scammers love fake 'your account will be deleted' warnings. Always verify through the real app or website.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-close",
+        "type": "result",
+        "title": "👍 Stayed safe",
+        "origin": "",
+        "time": "",
+        "content": "Closing the pop-up kept your account safe. Remember that real security alerts appear INSIDE the app — never as random pop-ups on other websites.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-enterbad",
+        "type": "result",
+        "title": "👎 Account taken over",
+        "origin": "",
+        "time": "",
+        "content": "You gave your password to a fake login page. The scammer took over your Instagram and posted spam to all your friends. You had to recover it using 'forgot password' and turn on 2FA.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-realizeok",
+        "type": "result",
+        "title": "🚩 Sharp recovery!",
+        "origin": "",
+        "time": "",
+        "content": "You noticed the suspicious web address and backed out before entering your password. Checking the domain/app matters!",
+        "question": "",
+        "actions": []
+      }
+    ]
+  },
+  {
+    "id": "story-06",
+    "title": "The Suspicious File",
+    "subtitle": "A friend sends you something odd to open.",
+    "icon": "📂",
+    "difficulty": 2,
+    "intro": "On the school computer, your friend Bhavesh sends you a file over chat. 'Open this ASAP, it's an exam answer sheet! Leaked 😉' You weren't expecting any file from him. Let's decide.",
+    "resolution": "Unexpected attachments and files are a classic way for viruses to spread. Ask who sent it and why before opening anything unknown.",
+    "steps": [
+      {
+        "id": "step-1",
+        "type": "file",
+        "title": "Chat File",
+        "origin": "Bhavesh",
+        "time": "2:35 PM",
+        "content": "📎 exam_answers_final.zip (1.2 MB) — 'Bro open this!!! It's the answer sheet for tomorrow's test! Don't share it around!! 😉😉'",
+        "question": "Bhavesh sent you a file claiming to contain the test answers. What should you do?",
+        "actions": [
+          {
+            "id": "open",
+            "label": "Open the file",
+            "nextStep": "step-open",
+            "consequence": "You double-click the file. It starts extracting and running something called 'setup.exe'.",
+            "newInfo": "The file wasn't answers — it's malware. Your computer slows down, your personal files are at risk, and the school's IT has to step in.",
+            "effects": { "security": -18 }
+          },
+          {
+            "id": "ask",
+            "label": "Ask Bhavesh what it is",
+            "nextStep": "step-ask",
+            "consequence": "You message Bhavesh: 'What is this file?' He replies: 'I never sent you any file! My account might be hacked. DO NOT open it!'",
+            "newInfo": "Bhavesh's account was hacked, and the file is malware being sent to everyone on his list.",
+            "effects": { "security": 6, "goodDecisions": 1 }
+          },
+          {
+            "id": "report",
+            "label": "Report the file",
+            "nextStep": "step-report",
+            "consequence": "You don't open it. Instead, you report the message as suspicious to your teacher and IT.",
+            "newInfo": "IT checks the file and confirms it's malware being spread through hacked accounts. Reporting it helped stop the whole computer lab from getting infected.",
+            "effects": { "security": 8, "threatsStopped": 1, "goodDecisions": 1 }
+          }
+        ]
+      },
+      {
+        "id": "step-open",
+        "type": "file",
+        "title": "Computer",
+        "origin": "System",
+        "time": "2:36 PM",
+        "content": "The computer has suddenly become very slow and a warning appears: 'Antivirus found a threat: Trojan. Quarantined.'",
+        "question": "A virus tried to install itself, but antivirus caught it. What do you do now?",
+        "actions": [
+          {
+            "id": "it",
+            "label": "Tell the school IT",
+            "nextStep": "step-it",
+            "consequence": "You immediately tell the computer lab teacher and IT, who clean the computer.",
+            "newInfo": "Your quick reporting stopped the virus from spreading to other computers in the lab. Lesson learned about opening unexpected files.",
+            "effects": { "security": -8, "goodDecisions": 1 }
+          },
+          {
+            "id": "hide",
+            "label": "Hide it and say nothing",
+            "nextStep": "step-hide",
+            "consequence": "You hide the warning and hope no one notices.",
+            "newInfo": "The virus spreads from your computer to other school computers before anyone finds out. IT is not happy and the whole system has to be cleaned.",
+            "effects": { "security": -25 }
+          }
+        ]
+      },
+      {
+        "id": "step-ask",
+        "type": "result",
+        "title": "🚩 Great instinct!",
+        "origin": "",
+        "time": "",
+        "content": "You asked before opening, and discovered Bhavesh's account was hacked. The file was malware. Asking 'why am I getting this?' is one of the smartest cyber habits.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-report",
+        "type": "result",
+        "title": "🚩 Cyber hero!",
+        "origin": "",
+        "time": "",
+        "content": "You reported the file, and IT confirmed it was malware sent from a hacked account. Your report protected the whole computer lab from a virus.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-it",
+        "type": "result",
+        "title": "😅 Handled responsibly",
+        "origin": "",
+        "time": "",
+        "content": "Opening it was risky, but telling IT right away stopped the virus from spreading. Own up to mistakes quickly — it can save the whole network.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-hide",
+        "type": "result",
+        "title": "👎 The virus spread",
+        "origin": "",
+        "time": "",
+        "content": "Hiding the problem let the virus spread across the school's computers. When something goes wrong, telling an adult or IT right away is always the best move.",
+        "question": "",
+        "actions": []
+      }
+    ]
+  },
+  {
+    "id": "story-07",
+    "title": "The Real School Notice",
+    "subtitle": "Sometimes a message is actually legitimate.",
+    "icon": "🏫",
+    "difficulty": 1,
+    "intro": "Today's final scenario is a trickier one. You receive an email that seems to be from Greenvalley High School's office. Let's decide whether it's real.",
+    "resolution": "Not everything is a scam! If a message is real and expected, it's fine to act on it. The skill is telling the difference — through context, the sender, and what they ask for.",
+    "steps": [
+      {
+        "id": "step-1",
+        "type": "email",
+        "title": "School Email",
+        "origin": "office@greenvalley-high.edu.in",
+        "time": "9:00 AM",
+        "content": "Subject: Annual Day Practice — Tomorrow at 4 PM\n\nDear Student,\n\nPlease attend practice for the Annual Day performance tomorrow at 4:00 PM in the school auditorium. Bring your costume. If you cannot attend, please reply to this email.\n\n— School Office",
+        "question": "This email asks you to attend the Annual Day practice. It looks like it's from your school. What should you do?",
+        "actions": [
+          {
+            "id": "verify",
+            "label": "Check with your class teacher first",
+            "nextStep": "step-verify",
+            "consequence": "You ask your class teacher in the morning. She says: 'Yes! Annual Day practice is confirmed for tomorrow at 4 PM. Don't forget your costume!'",
+            "newInfo": "The email was genuine. Checking with a teacher is a good, careful habit — and nothing is lost by confirming.",
+            "effects": { "security": 5, "goodDecisions": 1 }
+          },
+          {
+            "id": "attend",
+            "label": "Attend practice as asked",
+            "nextStep": "step-attend",
+            "consequence": "The email matches what your teacher mentioned earlier, so you plan to attend.",
+            "newInfo": "This was fine! The email really was from your school's office. Attending means you don't miss the practice.",
+            "effects": { "security": 4, "goodDecisions": 1 }
+          },
+          {
+            "id": "delete",
+            "label": "Delete it — could be a trap",
+            "nextStep": "step-delete",
+            "consequence": "You delete the email assuming it's fake, just because you're suspicious of everything.",
+            "newInfo": "The email was REAL. Because you deleted it, you missed the Annual Day practice and your teacher is a little annoyed.",
+            "effects": { "security": -3 }
+          }
+        ]
+      },
+      {
+        "id": "step-verify",
+        "type": "result",
+        "title": "🚩 Careful and correct!",
+        "origin": "",
+        "time": "",
+        "content": "You confirmed with a real person and found the message was genuine. Balancing caution with trust is exactly the right approach. Not everything is a scam!",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-attend",
+        "type": "result",
+        "title": "👍 Well done!",
+        "origin": "",
+        "time": "",
+        "content": "You recognised this as a legitimate school notice. The clues matched — the correct school domain and content you expected. You attended practice and had no problems.",
+        "question": "",
+        "actions": []
+      },
+      {
+        "id": "step-delete",
+        "type": "result",
+        "title": "🤔 Being TOO suspicious",
+        "origin": "",
+        "time": "",
+        "content": "Being cautious is good, but 'unknown = danger' isn't the rule. This message was real, and you missed the practice. Look at the sender and the content — not just your fear.",
+        "question": "",
+        "actions": []
+      }
+    ]
+  }
+]

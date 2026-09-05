@@ -1,50 +1,73 @@
 # 🛡️ CyberSprint: Think Before You Click
 
-A complete, playable **cybersecurity awareness game** for high school students aged 14-17 with little or no prior cybersecurity knowledge. Built for school cybersecurity awareness events where teams compete on a live leaderboard.
+An **interactive cybersecurity storytelling show** projected live from ONE laptop to a classroom.
+Call a student up, let them make decisions on the big screen, and watch the **consequences** unfold.
 
-**Total session: ~10 minutes maximum.**
+**For 13–14-year-old Indian school students. Total session: ~10 minutes.**
+
+---
+
+## The New Format — An Interactive Story, Not a Quiz
+
+CyberSprint is an **interactive, branching storytelling show**:
+
+1. The presenter projects the game from one laptop (or a deployed web URL).
+2. The presenter calls a student from the audience and asks *"What should I do?"*
+3. The student picks an action by tapping the big button on the screen.
+4. The game shows the **consequence**, reveals **new information**, and maybe presents another decision.
+5. The story continues until it reaches a resolution.
+
+The core loop is:
+
+```
+SCENARIO → Student decision → Consequence → New info → Decision → Consequence → Resolution
+```
+
+There is **no single "correct" answer**. Many options are reasonable — "Ignore" and "Report"
+are both sensible — but they lead to *different consequences*. The goal is to build real
+cybersecurity **judgment**, not to reward a single right click.
 
 ---
 
 ## What it teaches
 
 Students learn to:
-- Recognize phishing attempts and suspicious links
-- Identify social engineering tactics
-- Understand why passwords and OTPs are never shared
-- Verify requests before acting
-- Spot suspicious QR codes and unknown USB devices
-- Recognize fake account/security notifications
-- Develop the **Stop → Think → Verify → Act** habit
+- Recognize phishing links and social-engineering tricks
+- Understand why passwords, OTPs and UPI details are never shared
+- Verify suspicious requests before acting
+- Spot fake QR codes and unexpected files
+- Recover calmly when something goes wrong
+- And, importantly, **not treat every message as a scam** — legitimate situations are included
 
-The game mixes **legitimate** and **malicious** scenarios on purpose — the correct strategy is NOT "ignore everything." It teaches real judgment.
+Covered topics include: WhatsApp chats, Instagram/social media, YouTube, online games,
+free game rewards, school competitions, QR codes, UPI/payment scams, passwords, 2FA,
+fake account alerts, compromised friends, suspicious files and fake updates.
+
+---
+
+## Architecture — 100% Frontend, Zero Backend
+
+The game is a **fully client-side React/Vite app**. There is **no server, no API, no
+WebSocket, and no runtime fetch of scenario data**.
+
+- **Scenarios are bundled** into the JavaScript at build time
+  (`frontend/src/game/data/scenarios.json` is `import`-ed by `stories.ts`).
+- **The QR code image is bundled** too (`frontend/src/assets/qr_code.jpeg`) and emitted as
+  a hashed asset by Vite.
+- The whole thing can be served as **static files** — perfect for Vercel, Netlify, GitHub
+  Pages, or opening the build locally.
 
 ---
 
 ## Features
 
-- Multiple teams play simultaneously over a local network
-- Real-time leaderboard via WebSockets (no page refresh)
-- Server-authoritative scoring (client cannot submit arbitrary scores)
-- 40 data-driven scenarios across 6 message types (email, chat, browser, QR, USB, notification)
-- Gradual difficulty progression (easy → medium → hard → rapid-fire)
-- Simulated consequences for mistakes (fictional, fully sandboxed in browser)
-- Countdown timer, security/health indicator, score, feedback
-- Offline / local-network only — no internet required
-- Graceful recovery from temporary WebSocket disconnects
-- Prevents duplicate submissions and invalid scores
-- Fullscreen mode, works in Chrome/Chromium on common laptop resolutions
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-|-------|-----------|
-| Frontend | React + TypeScript + Vite + Tailwind CSS |
-| Backend | Go (stdlib + gorilla/websocket) |
-| Storage | In-memory (no database needed) |
-| Realtime | WebSockets |
+- **7 branching stories**, many connected into mini-stories where an earlier decision affects what happens next
+- **Consequence screens** after every meaningful decision (no "CORRECT!" / "WRONG!" — the game teaches through outcomes)
+- **Live resource state**: Security, Money Saved (₹), Threats Stopped, Good Decisions
+- **Friendly end screen** — "Cyber Defender Result" with a fun title, not a grade
+- **Designed for projection**: large readable text, big buttons, strong visual hierarchy, clear transitions and animations
+- **No typing by students** — they just point and click
+- Fully **data-driven**: stories live in a single JSON file, no hardcoded React components
 
 ---
 
@@ -52,114 +75,127 @@ The game mixes **legitimate** and **malicious** scenarios on purpose — the cor
 
 ```
 cybersprint/
-├── frontend/           # React app (Vite + Tailwind)
+├── frontend/                    # React app (Vite + Tailwind) — the deployable app
 │   └── src/
-│       ├── components/ # ScenarioDisplay, Timer, Score, Leaderboard
-│       ├── game/       # scenarios, gameState, types
-│       └── screens/    # Setup, Game, Results
-├── backend/
-│   ├── main.go         # HTTP handlers, game logic
-│   └── websocket.go    # WebSocket hub/broadcast
-├── scenarios/
-│   └── scenarios.json  # 40 scenarios
-├── build.sh            # One-command build
+│       ├── components/          # StepDisplay, ConsequenceCard, StoryIntro, ResourceBar, StoryCompleteCard
+│       ├── game/                # stories (loader), gameState (effects & scoring), types
+│       │   └── data/
+│       │       └── scenarios.json   # ← the 7 branching stories (bundled into the app)
+│       ├── assets/qr_code.jpeg  # bundled via Vite
+│       └── screens/             # Setup, Game, Results
+├── vercel.json                  # Vercel build/output configuration
+├── build.sh                     # Local build (frontend only)
 └── README.md
 ```
 
 ---
 
-## Running the Game (Deployment)
+## Scenario Data Model
 
-### Prerequisites
-- A machine (the server) with **Go** and **Node.js** installed
-- Student laptops with any Chrome/Chromium browser
+Each story is a list of **steps** that branch on the student's choice. Each action carries its
+own `nextStep`, a `consequence`, optional `newInfo`, and `effects`.
 
-### 1. Build once
-```bash
-./build.sh
+```json
+{
+  "id": "story-01",
+  "title": "Your Friend's Account",
+  "subtitle": "A friend sends you a link that seems too good to be true.",
+  "icon": "👥",
+  "difficulty": 2,
+  "intro": "Aarav from your class has sent you a WhatsApp message...",
+  "resolution": "Keep talking to your friends if something feels off...",
+  "steps": [
+    {
+      "id": "step-1",
+      "type": "chat",
+      "title": "WhatsApp",
+      "origin": "Aarav",
+      "time": "10:42 PM",
+      "content": "Bro!! Check out this site giving FREE unlimited game coins!!...",
+      "question": "Aarav sent you a link promising free game coins. What should you do?",
+      "actions": [
+        {
+          "id": "ask",
+          "label": "Ask Aarav about it",
+          "nextStep": "step-b-ask",
+          "consequence": "You reply: 'Hey dude, did you really send this? 👀'",
+          "newInfo": "Aarav replies: 'What?! I never sent that! My account got hacked...'",
+          "effects": { "security": 3, "goodDecisions": 1 }
+        }
+      ]
+    }
+  ]
+}
 ```
-This builds the React app into `frontend/dist` and compiles the Go server into `backend/cybersprint-server`.
 
-### 2. Start the server
-```bash
-cd backend
-./cybersprint-server
-```
-or to choose a port:
-```bash
-PORT=8080 ./cybersprint-server
-```
-The server prints the URL and listens on port `8080` by default.
+An action with no `nextStep` (or a step with no `actions`) ends that branch of the story.
 
-### 3. Connect team laptops
-Students open `http://<server-ip>:8080` in their browser (e.g., `http://192.168.1.10:8080`).
+### Effect dimensions
 
-- Enter a **Team Name** (a unique ID is auto-generated behind the scenes and remembered in the browser, so reconnecting keeps your score).
-- Click **Start Game**.
-- A 10-minute timer begins. Scenarios appear one at a time; respond using the action buttons.
+| Effect | Meaning |
+|--------|---------|
+| `security` | 0–100 gauge, starts at 50. Falls on risky choices, rises on good ones. |
+| `moneySaved` | ₹ saved/kept by avoiding scams (a scammer who didn't get paid counts as saved). |
+| `threatsStopped` | Count of scams reported / prevented. |
+| `goodDecisions` | Number of sensible judgment calls. |
+
+The 7 stories cover: a compromised friend's account, a fake YouTube free-coins ad, a school
+QR-code scam, a fake "parent" UPI request, a fake Instagram security alert, a suspicious
+file from a friend, and a genuinely legitimate school notice.
 
 ---
 
-## API Endpoints
+## Deploying to Vercel (recommended)
 
-| Method | Endpoint            | Description |
-|--------|---------------------|-------------|
-| GET    | `/`                 | Serves the React app |
-| POST   | `/api/join`         | Register a team |
-| POST   | `/api/start`        | Start the 10-minute session |
-| POST   | `/api/decision`     | Submit a decision (validated server-side) |
-| GET    | `/api/leaderboard`  | Get full live leaderboard |
-| GET    | `/api/game-status`  | Running/ended state |
-| GET    | `/api/scenario`     | Fetch a scenario for a team |
-| POST   | `/api/end-game`     | End the session |
-| WS     | `/ws`               | Real-time leaderboard + game-status broadcasts |
+The repo is configured for a zero-config Vercel deployment of the Vite frontend.
 
----
+### Option A — GitHub → Vercel (simplest)
 
-## Scoring
+1. Push this repository to GitHub.
+2. Go to [vercel.com](https://vercel.com) → **Add New → Project**.
+3. Import the repo. Vercel auto-detects `vercel.json`:
+   - **Framework Preset:** Vite
+   - **Build Command:** `npm --prefix frontend install && npm --prefix frontend run build`
+   - **Output Directory:** `frontend/dist`
+4. Click **Deploy**. Vercel gives you a public URL like `https://cybersprint.vercel.app`.
 
-Every scenario has one **ideal** response (`correctAction`) plus a set of **acceptable** responses (`acceptableActions`) — alternatives that are safe/defensible even if not ideal.
+Every push to the default branch re-deploys automatically.
 
-| Verdict | Meaning | Points | Accuracy |
-|---------|---------|--------|----------|
-| **Perfect** | Chose the ideal action | Full points (Easy 10 / Med 15 / Hard 20–25), + speed bonus | Counts as correct |
-| **Acceptable** | Chose a safe-but-not-ideal action (e.g. blocking a phishing email instead of reporting it) | **0 points, no deduction** | Counts as correct |
-| **Wrong** | Made a genuinely risky choice (e.g. opening a scam) | Deducts ~⅓ of the points (clamped at zero) | Counts as a miss |
+### Option B — Vercel CLI
 
-This is intentional: the game rewards good judgment, so a player who *blocks* a phishing email is **not** penalized — they just don't get the full points a *report* would earn. Only clearly dangerous actions (like opening suspicious content) deduct points.
-
-- Leaderboard ranking: **1. Total score → 2. Accuracy → 3. Average response time**.
-- Accuracy counts both Perfect and Acceptable answers as well-handled.
-- The **server** is the authority — the client never submits its own score, only the chosen action.
-
-> Note: every scenario's `acceptableActions` array is automatically validated against its own `actions` list and `correctAction` — acceptable responses can never overlap the ideal one.
-
----
-
-## Reliability
-
-- **WebSocket disconnect**: the client keeps running the current scenario and continues; decisions are processed through HTTP and synchronized.
-- **Duplicate submissions**: rejected by the server.
-- **Invalid/missing scores**: impossible — the server computes everything.
-- **Local network only**: no internet access required; the entire game is sandboxed in the browser. It never touches real files or services.
+```bash
+npm i -g vercel
+vercel            # first time: link the project
+vercel --prod     # production deploy
+```
 
 ---
 
 ## Local Development
 
 ```bash
-# 1. Terminal — start the Go server
-cd backend && ./cybersprint-server
-
-# 2. Terminal — run the Vite dev server (hot reload)
-cd frontend && npm run dev
+cd frontend
+npm install
+npm run dev        # Vite dev server with hot reload, http://localhost:5173
 ```
-The Vite dev server proxies `/api` and `/ws` to `localhost:8080`.
+
+Build and preview the production bundle locally:
+
+```bash
+cd frontend
+npm run build      # tsc + vite build → frontend/dist
+npm run preview    # serves built app, any asset works from the URL base
+```
+
+### Editing stories
+
+Edit **`frontend/src/game/data/scenarios.json`** (single source of truth) and rebuild —
+it's bundled into the JS. After editing, run `npm run build` to pick up the change.
 
 ---
 
 ## Notes
 
-- Scenario data lives in `scenarios/scenarios.json`. It is intentionally **data-driven** — add or edit scenarios without touching React components.
-- No accounts or passwords — it's a temporary event game, by design.
-- Everything is fictional: made-up brands, domains, and a made-up school. It does not clone real apps.
+- Scenario data is **data-driven** — edit the JSON to change stories without touching React components.
+- No accounts, no networking, no leaderboard, no backend — it's one live show, fully static.
+- Everything is fictional: made-up brands, domains, and schools (Greenvalley High). Amounts are in ₹.

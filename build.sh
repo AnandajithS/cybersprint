@@ -11,16 +11,10 @@ cd "$ROOT/frontend"
 npm run build >/dev/null 2>&1
 echo "  ✓ Frontend built (frontend/dist)"
 
-echo "📍 Building backend..."
-cd "$ROOT/backend"
-go build -o cybersprint-server .
-echo "  ✓ Backend built (backend/cybersprint-server)"
-
 echo
 echo "✅ Build complete!"
 echo
-echo "Run with:"
-echo "  cd $ROOT/backend && ./cybersprint-server"
-echo "  (or)  PORT=8080 ./backend/cybersprint-server"
+echo "Preview locally with:"
+echo "  cd $ROOT/frontend && npm run preview"
 echo
-echo "Then open http://localhost:8080 in a browser."
+echo "To deploy to Vercel, see README.md"
