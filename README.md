@@ -10,7 +10,7 @@ the ~10-minute session and the scoring curve), so no two shows are identical.
 
 ---
 
-## The New Format — An Interactive Story, Not a Quiz
+## The New Format - An Interactive Story, Not a Quiz
 
 CyberSprint is an **interactive, branching storytelling show**:
 
@@ -26,8 +26,8 @@ The core loop is:
 SCENARIO → Student decision → Consequence → New info → Decision → Consequence → Resolution
 ```
 
-There is **no single "correct" answer**. Many options are reasonable — "Ignore" and "Report"
-are both sensible — but they lead to *different consequences*. The goal is to build real
+There is **no single "correct" answer**. Many options are reasonable - "Ignore" and "Report"
+are both sensible - but they lead to *different consequences*. The goal is to build real
 cybersecurity **judgment**, not to reward a single right click.
 
 ---
@@ -40,7 +40,7 @@ Students learn to:
 - Verify suspicious requests before acting
 - Spot fake QR codes and unexpected files
 - Recover calmly when something goes wrong
-- And, importantly, **not treat every message as a scam** — legitimate situations are included
+- And, importantly, **not treat every message as a scam** - legitimate situations are included
 
 Covered topics include: WhatsApp chats, Instagram/social media, YouTube, online games,
 free game rewards, school competitions, QR codes, UPI/payment scams, passwords, 2FA,
@@ -48,7 +48,7 @@ fake account alerts, compromised friends, suspicious files and fake updates.
 
 ---
 
-## Architecture — 100% Frontend, Zero Backend
+## Architecture - 100% Frontend, Zero Backend
 
 The game is a **fully client-side React/Vite app**. There is **no server, no API, no
 WebSocket, and no runtime fetch of scenario data**.
@@ -57,7 +57,7 @@ WebSocket, and no runtime fetch of scenario data**.
   (`frontend/src/game/data/scenarios.json` is `import`-ed by `stories.ts`).
 - **The QR code image is bundled** too (`frontend/src/assets/qr_code.jpeg`) and emitted as
   a hashed asset by Vite.
-- The whole thing can be served as **static files** — perfect for Vercel, Netlify, GitHub
+- The whole thing can be served as **static files** - perfect for Vercel, Netlify, GitHub
   Pages, or opening the build locally.
 
 ---
@@ -65,11 +65,11 @@ WebSocket, and no runtime fetch of scenario data**.
 ## Features
 
 - **13 branching stories** (7 random per show), many connected into mini-stories where an earlier decision affects what happens next
-- **Consequence screens** after every meaningful decision (no "CORRECT!" / "WRONG!" — the game teaches through outcomes)
+- **Consequence screens** after every meaningful decision (no "CORRECT!" / "WRONG!" - the game teaches through outcomes)
 - **Live resource state**: Security, Money Saved (₹), Threats Stopped, Good Decisions
-- **Friendly end screen** — "Cyber Defender Result" with a fun title, not a grade
+- **Friendly end screen** - "Cyber Defender Result" with a fun title, not a grade
 - **Designed for projection**: large readable text, big buttons, strong visual hierarchy, clear transitions and animations
-- **No typing by students** — they just point and click
+- **No typing by students** - they just point and click
 - Fully **data-driven**: stories live in a single JSON file, no hardcoded React components
 
 ---
@@ -78,7 +78,7 @@ WebSocket, and no runtime fetch of scenario data**.
 
 ```
 cybersprint/
-├── frontend/                    # React app (Vite + Tailwind) — the deployable app
+├── frontend/                    # React app (Vite + Tailwind) - the deployable app
 │   └── src/
 │       ├── components/          # StepDisplay, ConsequenceCard, StoryIntro, ResourceBar, StoryCompleteCard
 │       ├── game/                # stories (loader), gameState (effects & scoring), types
@@ -155,7 +155,7 @@ card for them. Each show plays a random 7 of these 13.
 
 The repo is configured for a zero-config Vercel deployment of the Vite frontend.
 
-### Option A — GitHub → Vercel (simplest)
+### Option A - GitHub → Vercel (simplest)
 
 1. Push this repository to GitHub.
 2. Go to [vercel.com](https://vercel.com) → **Add New → Project**.
@@ -167,7 +167,7 @@ The repo is configured for a zero-config Vercel deployment of the Vite frontend.
 
 Every push to the default branch re-deploys automatically.
 
-### Option B — Vercel CLI
+### Option B - Vercel CLI
 
 ```bash
 npm i -g vercel
@@ -195,13 +195,13 @@ npm run preview    # serves built app, any asset works from the URL base
 
 ### Editing stories
 
-Edit **`frontend/src/game/data/scenarios.json`** (single source of truth) and rebuild —
+Edit **`frontend/src/game/data/scenarios.json`** (single source of truth) and rebuild -
 it's bundled into the JS. After editing, run `npm run build` to pick up the change.
 
 ---
 
 ## Notes
 
-- Scenario data is **data-driven** — edit the JSON to change stories without touching React components.
-- No accounts, no networking, no leaderboard, no backend — it's one live show, fully static.
+- Scenario data is **data-driven** - edit the JSON to change stories without touching React components.
+- No accounts, no networking, no leaderboard, no backend - it's one live show, fully static.
 - Everything is fictional: made-up brands, domains, and schools (Greenvalley High). Amounts are in ₹.

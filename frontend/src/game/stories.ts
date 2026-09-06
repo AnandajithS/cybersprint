@@ -3,7 +3,7 @@ import scenarioData from './data/scenarios.json';
 
 const stories: Story[] = scenarioData as Story[];
 
-export const STORIES_PER_SHOW = 7;
+export const STORIES_PER_SHOW = 5;
 
 export function getStories(): Story[] {
   return stories;

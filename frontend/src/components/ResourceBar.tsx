@@ -19,11 +19,11 @@ function securityBarColor(v: number): string {
   return 'bg-cyber-red';
 }
 
-function secureIcon(v: number): string {
-  if (v >= 75) return '🟢';
-  if (v >= 50) return '🟡';
-  if (v >= 30) return '🟠';
-  return '🔴';
+function secureDotColor(v: number): string {
+  if (v >= 75) return 'bg-cyber-green';
+  if (v >= 50) return 'bg-cyber-yellow';
+  if (v >= 30) return 'bg-orange-400';
+  return 'bg-cyber-red';
 }
 
 export default function ResourceBar({ resources, compact }: ResourceBarProps) {
@@ -33,11 +33,12 @@ export default function ResourceBar({ resources, compact }: ResourceBarProps) {
     return (
       <div className="flex flex-wrap items-center gap-4 text-sm">
         <span className={`font-bold ${securityColor(resources.security)}`}>
-          {secureIcon(resources.security)} Security {resources.security}
+          <span className={`inline-block w-2.5 h-2.5 rounded-full ${secureDotColor(resources.security)} mr-1.5`} />
+          Security {resources.security}
         </span>
-        <span className="text-cyber-green font-bold">💰 ₹{money}</span>
-        <span className="text-cyber-blue font-bold">🛡️ {resources.threatsStopped}</span>
-        <span className="text-cyber-yellow font-bold">👍 {resources.goodDecisions}</span>
+        <span className="text-cyber-green font-bold">₹{money}</span>
+        <span className="text-cyber-blue font-bold">{resources.threatsStopped} stopped</span>
+        <span className="text-cyber-yellow font-bold">{resources.goodDecisions} good</span>
       </div>
     );
   }

@@ -12,7 +12,7 @@ function getIcon(type: Step['type']): string {
     case 'browser': return '🌐';
     case 'notification': return '🔔';
     case 'qr': return '📱';
-    case 'file': return '📁';
+    case 'file': return '📄';
     case 'sms': return '📩';
     case 'email': return '📧';
     default: return '📨';
@@ -35,7 +35,7 @@ function renderMessage(type: Step['type'], step: Step) {
           </div>
           <div className="min-w-0">
             <div className="text-white font-bold text-2xl">{step.origin || 'Unknown'}</div>
-            <div className="text-gray-400 text-sm">{step.time}</div>
+            <div className="text-gray-400 text-xl">{step.time}</div>
           </div>
         </div>
       );
@@ -47,8 +47,8 @@ function renderMessage(type: Step['type'], step: Step) {
             <span className="w-3 h-3 rounded-full bg-red-500" />
             <span className="w-3 h-3 rounded-full bg-yellow-500" />
             <span className="w-3 h-3 rounded-full bg-green-500" />
-            <span className="ml-2 flex-1 bg-gray-800 rounded px-3 py-1 text-cyber-blue text-sm truncate">
-              🔒 {step.origin || step.title}
+            <span className="ml-2 flex-1 bg-gray-800 rounded px-3 py-1 text-cyber-blue text-xl truncate">
+              {step.origin || step.title}
             </span>
           </div>
         </div>
@@ -57,7 +57,7 @@ function renderMessage(type: Step['type'], step: Step) {
     case 'notification':
       return (
         <div className="mb-2">
-          <div className="inline-flex items-center gap-2 bg-gray-700/40 rounded-full px-3 py-1 text-sm text-gray-300">
+          <div className="inline-flex items-center gap-2 bg-gray-700/40 rounded-full px-3 py-2 text-xl text-gray-300">
             <span className={`text-xl ${deco.replace('mb-3', '')}`}>{getIcon(type)}</span>
             {step.origin || step.title} · {step.time}
           </div>
@@ -77,10 +77,9 @@ function renderMessage(type: Step['type'], step: Step) {
       return (
         <div className="mb-3">
           <div className="inline-flex items-center gap-3 bg-gray-700/40 rounded-xl px-4 py-3 border border-gray-600">
-            <span className="text-3xl">📎</span>
             <div>
               <div className="text-cyber-blue font-medium">{step.origin || step.title}</div>
-              <div className="text-gray-400 text-xs">1.2 MB · received {step.time}</div>
+              <div className="text-gray-400 text-lg">1.2 MB · received {step.time}</div>
             </div>
           </div>
         </div>
@@ -89,7 +88,7 @@ function renderMessage(type: Step['type'], step: Step) {
     case 'sms':
       return (
         <div className="mb-2">
-          <div className="inline-flex items-center gap-2 text-sm text-gray-300">
+          <div className="inline-flex items-center gap-2 text-xl text-gray-300">
             <span className="text-xl">{getIcon(type)}</span>
             <span className="font-medium text-white">{step.origin || step.title}</span>
             <span className="text-gray-500">{step.time}</span>
@@ -106,7 +105,7 @@ function renderMessage(type: Step['type'], step: Step) {
             </div>
             <div className="min-w-0">
               <div className="text-white font-bold text-2xl leading-tight">{step.title}</div>
-              <div className="text-gray-400 text-sm">From: {step.origin}</div>
+              <div className="text-gray-400 text-xl">From: {step.origin}</div>
             </div>
           </div>
         </div>
@@ -166,7 +165,7 @@ export default function StepDisplay({ step, onAction }: StepDisplayProps) {
     <div className="bg-gray-800/40 backdrop-blur-sm rounded-3xl border border-gray-700/50 overflow-hidden">
       <div className="px-6 sm:px-10 pt-6 sm:pt-8 animate-fade-in" key={step.id}>
         <div className="mb-4">
-          <span className="inline-flex items-center gap-2 text-cyber-blue font-semibold text-lg sm:text-xl">
+          <span className="inline-flex items-center gap-2 text-cyber-blue font-semibold text-2xl">
             <span className="text-3xl">{getIcon(step.type)}</span>
             {step.title}
           </span>
@@ -184,7 +183,6 @@ export default function StepDisplay({ step, onAction }: StepDisplayProps) {
           <div className="text-3xl sm:text-4xl font-extrabold text-white mb-2">
             {step.question || 'What should I do?'}
           </div>
-          <div className="text-xl text-cyber-blue font-medium">🎤 Ask the audience!</div>
         </div>
       </div>
 
@@ -194,7 +192,7 @@ export default function StepDisplay({ step, onAction }: StepDisplayProps) {
             <button
               key={action.id}
               onClick={() => onAction(action)}
-              className={`px-6 py-5 rounded-2xl border text-left text-2xl font-bold transition-all transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-cyber-blue/40 ${actionStyles[toneForLabel(action.label)]}`}
+              className={`px-6 py-5 rounded-2xl border text-left text-2xl font-bold transition-all transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-cyber-blue/40 ${actionStyles[toneForLabel('neutral')]}`}
             >
               {action.label}
             </button>

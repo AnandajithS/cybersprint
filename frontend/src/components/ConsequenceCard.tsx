@@ -27,10 +27,10 @@ export default function ConsequenceCard({
 }: ConsequenceCardProps) {
   const effects = action.effects || {};
   const effectLines = [
-    renderEffect('🛡️ Security', effects.security, ''),
-    renderEffect('💰 Money Saved', effects.moneySaved, ''),
-    renderEffect('🚩 Threats Stopped', effects.threatsStopped, ''),
-    renderEffect('👍 Good Decisions', effects.goodDecisions, ''),
+    renderEffect('Security', effects.security, ''),
+    renderEffect('Money Saved', effects.moneySaved, ''),
+    renderEffect('Threats Stopped', effects.threatsStopped, ''),
+    renderEffect('Good Decisions', effects.goodDecisions, ''),
   ].filter((line): line is string => line !== null);
 
   const hasPositiveEffect = (effects.security || 0) >= 0;
@@ -52,12 +52,14 @@ export default function ConsequenceCard({
       >
         <div className="flex items-start gap-4 mb-6">
           <div
-            className={`text-6xl sm:text-7xl ${hasPositiveEffect ? '' : ''}`}
+            className={`w-14 h-14 shrink-0 rounded-full flex items-center justify-center text-white text-4xl font-bold ${
+              hasPositiveEffect ? 'bg-cyber-green' : 'bg-red-500'
+            }`}
           >
-            {hasPositiveEffect ? '✅' : '⚠️'}
+            {hasPositiveEffect ? '+' : '!'}
           </div>
           <div className="min-w-0">
-            <div className="text-sm uppercase tracking-wider font-semibold text-gray-300 mb-1">
+            <div className="text-lg uppercase tracking-wider font-semibold text-gray-300 mb-1">
               You chose {action.label}
             </div>
             <p className="text-white text-3xl sm:text-4xl font-extrabold leading-tight max-w-4xl">
@@ -68,7 +70,7 @@ export default function ConsequenceCard({
 
         {action.newInfo && (
           <div className="bg-black/30 rounded-2xl border border-white/10 p-6 sm:p-8 mb-6">
-            <div className="text-cyber-blue font-bold text-xl mb-2">🔎 New Information</div>
+            <div className="text-cyber-blue font-bold text-2xl mb-2">New Information</div>
             <p className="text-white text-2xl sm:text-3xl leading-relaxed">{action.newInfo}</p>
           </div>
         )}
@@ -95,7 +97,7 @@ export default function ConsequenceCard({
             </span>
           )}
           <span className="px-4 py-2 rounded-full text-xl font-bold border bg-gray-800/60 text-gray-300 border-gray-500/40">
-            🛡️ Security now {securityAfter}
+            Security now {securityAfter}
           </span>
         </div>
 

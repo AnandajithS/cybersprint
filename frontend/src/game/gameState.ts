@@ -58,10 +58,10 @@ export function computeResult(state: ResourceState): GameResult {
     title = 'Security Pro';
     tagline = 'You make solid calls. A few more checks and you will be unstoppable.';
   } else if (score >= 45) {
-    title = 'Getting Suspicious 😅';
+    title = 'Getting Suspicious';
     tagline = 'You trusted too easily. Ask more questions before you act!';
   } else {
-    title = 'Needs More Suspicion 😅';
+    title = 'Needs More Suspicion';
     tagline = 'Whoa! Watch out for red flags like passwords, OTPs and too-good deals.';
   }
 

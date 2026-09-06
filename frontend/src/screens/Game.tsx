@@ -58,17 +58,17 @@ export default function Game({
       <header className="bg-gray-900/80 backdrop-blur-sm border-b border-gray-700/50 px-4 sm:px-8 py-4">
         <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <h1 className="text-2xl sm:text-3xl font-extrabold">
+            <h1 className="text-2xl sm:text-4xl font-extrabold">
               <span className="text-cyber-blue">Cyber</span>
               <span className="text-white">Sprint</span>
             </h1>
-            <span className="hidden sm:inline text-xl text-gray-400">
+            <span className="hidden sm:inline text-2xl text-gray-400">
               {stageLabels[stage] || ''}
             </span>
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-3 text-xl font-bold">
+            <div className="flex items-center gap-3 text-2xl font-bold">
               <span className="text-white">{storyIndex + 1}/{totalStories}</span>
               <span className="text-gray-300">{story.icon} {story.title}</span>
             </div>
@@ -77,7 +77,7 @@ export default function Game({
               className="px-3 py-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 border border-gray-700/60 text-sm transition-colors"
               title="Toggle fullscreen"
             >
-              ⛶ Fullscreen
+              Fullscreen
             </button>
           </div>
         </div>
@@ -126,8 +126,7 @@ export default function Game({
 
           {stage === GameStage.Results && (
             <div className="text-center py-20">
-              <div className="text-6xl mb-4">🏁</div>
-              <h2 className="text-4xl font-bold text-white">Game Over — loading results...</h2>
+              <h2 className="text-4xl font-bold text-white">Game Over - loading results...</h2>
             </div>
           )}
         </div>
